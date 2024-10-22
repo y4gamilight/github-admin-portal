@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BAA24792CC815740044D294 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA24782CC815740044D294 /* DatabaseManager.swift */; };
 		4BCE5A6D2CC7B03400EA4865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE5A6C2CC7B03400EA4865 /* AppDelegate.swift */; };
 		4BCE5A6F2CC7B03400EA4865 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE5A6E2CC7B03400EA4865 /* SceneDelegate.swift */; };
 		4BCE5A712CC7B03400EA4865 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE5A702CC7B03400EA4865 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4BAA24782CC815740044D294 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		4BCE5A692CC7B03400EA4865 /* GithubAdminPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubAdminPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BCE5A6C2CC7B03400EA4865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BCE5A6E2CC7B03400EA4865 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B0F9BB32CC7CA76007C1F23 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4BCE5A7D2CC7B03600EA4865 /* Info.plist */,
+				4BCE5A6C2CC7B03400EA4865 /* AppDelegate.swift */,
+				4BCE5A6E2CC7B03400EA4865 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4BAA24712CC8109A0044D294 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				4BAA24772CC815600044D294 /* API */,
+				4BAA24762CC815520044D294 /* Database */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		4BAA24722CC810A20044D294 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4BCE5A722CC7B03400EA4865 /* Main.storyboard */,
+				4BCE5A782CC7B03600EA4865 /* Assets.xcassets */,
+				4BCE5A7A2CC7B03600EA4865 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4BAA24732CC810D70044D294 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				4BCE5A702CC7B03400EA4865 /* ViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		4BAA24742CC810EA0044D294 /* InterfaceAdapter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InterfaceAdapter;
+			sourceTree = "<group>";
+		};
+		4BAA24752CC810F50044D294 /* Domains */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domains;
+			sourceTree = "<group>";
+		};
+		4BAA24762CC815520044D294 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				4BCE5A752CC7B03400EA4865 /* GithubAdminPortal.xcdatamodeld */,
+				4BAA24782CC815740044D294 /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		4BAA24772CC815600044D294 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		4BCE5A602CC7B03400EA4865 = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +170,12 @@
 		4BCE5A6B2CC7B03400EA4865 /* GithubAdminPortal */ = {
 			isa = PBXGroup;
 			children = (
-				4BCE5A6C2CC7B03400EA4865 /* AppDelegate.swift */,
-				4BCE5A6E2CC7B03400EA4865 /* SceneDelegate.swift */,
-				4BCE5A702CC7B03400EA4865 /* ViewController.swift */,
-				4BCE5A722CC7B03400EA4865 /* Main.storyboard */,
-				4BCE5A782CC7B03600EA4865 /* Assets.xcassets */,
-				4BCE5A7A2CC7B03600EA4865 /* LaunchScreen.storyboard */,
-				4BCE5A7D2CC7B03600EA4865 /* Info.plist */,
-				4BCE5A752CC7B03400EA4865 /* GithubAdminPortal.xcdatamodeld */,
+				4B0F9BB32CC7CA76007C1F23 /* App */,
+				4BAA24722CC810A20044D294 /* Resources */,
+				4BAA24732CC810D70044D294 /* Presentation */,
+				4BAA24712CC8109A0044D294 /* Entities */,
+				4BAA24752CC810F50044D294 /* Domains */,
+				4BAA24742CC810EA0044D294 /* InterfaceAdapter */,
 			);
 			path = GithubAdminPortal;
 			sourceTree = "<group>";
@@ -263,6 +330,7 @@
 			files = (
 				4BCE5A772CC7B03400EA4865 /* GithubAdminPortal.xcdatamodeld in Sources */,
 				4BCE5A712CC7B03400EA4865 /* ViewController.swift in Sources */,
+				4BAA24792CC815740044D294 /* DatabaseManager.swift in Sources */,
 				4BCE5A6D2CC7B03400EA4865 /* AppDelegate.swift in Sources */,
 				4BCE5A6F2CC7B03400EA4865 /* SceneDelegate.swift in Sources */,
 			);
@@ -448,7 +516,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7WT7Y8CFN6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GithubAdminPortal/Info.plist;
+				INFOPLIST_FILE = GithubAdminPortal/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -477,7 +545,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7WT7Y8CFN6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GithubAdminPortal/Info.plist;
+				INFOPLIST_FILE = GithubAdminPortal/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
