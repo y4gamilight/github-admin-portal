@@ -27,6 +27,9 @@
 		4BA26C6E2CCBB01200ED1929 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA26C6D2CCBB01200ED1929 /* UIView+AutoLayout.swift */; };
 		4BAA24792CC815740044D294 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA24782CC815740044D294 /* DatabaseManager.swift */; };
 		4BAA247B2CC81B8C0044D294 /* APIClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA247A2CC81B8C0044D294 /* APIClientImp.swift */; };
+		4BACF69F2CCC60A400315744 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BACF69E2CCC60A400315744 /* BaseViewModel.swift */; };
+		4BACF6A12CCC60F800315744 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BACF6A02CCC60F800315744 /* Coordinator.swift */; };
+		4BACF6A32CCC616300315744 /* GithubUserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BACF6A22CCC616300315744 /* GithubUserListViewModel.swift */; };
 		4BCE5A6D2CC7B03400EA4865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE5A6C2CC7B03400EA4865 /* AppDelegate.swift */; };
 		4BCE5A6F2CC7B03400EA4865 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE5A6E2CC7B03400EA4865 /* SceneDelegate.swift */; };
 		4BCE5A712CC7B03400EA4865 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE5A702CC7B03400EA4865 /* RootRouter.swift */; };
@@ -77,6 +80,9 @@
 		4BA26C6D2CCBB01200ED1929 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		4BAA24782CC815740044D294 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		4BAA247A2CC81B8C0044D294 /* APIClientImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientImp.swift; sourceTree = "<group>"; };
+		4BACF69E2CCC60A400315744 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		4BACF6A02CCC60F800315744 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4BACF6A22CCC616300315744 /* GithubUserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubUserListViewModel.swift; sourceTree = "<group>"; };
 		4BCE5A692CC7B03400EA4865 /* GithubAdminPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubAdminPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BCE5A6C2CC7B03400EA4865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BCE5A6E2CC7B03400EA4865 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +206,7 @@
 				4BA26C662CCB7BDF00ED1929 /* Cell */,
 				4B9E8D322CCA95B600671249 /* GithubUserListVC.swift */,
 				4BA26C622CCB790700ED1929 /* GithubUserDataSource.swift */,
+				4BACF6A22CCC616300315744 /* GithubUserListViewModel.swift */,
 			);
 			path = GithubUserList;
 			sourceTree = "<group>";
@@ -208,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				4B9E8D372CCA97F900671249 /* BaseViewController.swift */,
+				4BACF69E2CCC60A400315744 /* BaseViewModel.swift */,
+				4BACF6A02CCC60F800315744 /* Coordinator.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -231,6 +240,7 @@
 		4BA26C692CCBADFF00ED1929 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				4B9E8D362CCA97EF00671249 /* Base */,
 				4BA26C6A2CCBAE1B00ED1929 /* Extension */,
 			);
 			path = Public;
@@ -268,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				4B9E8D3A2CCA9B0900671249 /* Root */,
-				4B9E8D362CCA97EF00671249 /* Base */,
 				4B9E8D312CCA959400671249 /* GithubUserList */,
 			);
 			path = Presentation;
@@ -499,10 +508,13 @@
 			files = (
 				4B5F41872CC965ED00FC2E17 /* GetUserListRequest.swift in Sources */,
 				4B9E8D3C2CCA9C4200671249 /* AppCoodinator.swift in Sources */,
+				4BACF6A12CCC60F800315744 /* Coordinator.swift in Sources */,
+				4BACF6A32CCC616300315744 /* GithubUserListViewModel.swift in Sources */,
 				4BCE5A772CC7B03400EA4865 /* GithubAdminPortal.xcdatamodeld in Sources */,
 				4B5F41892CC967B900FC2E17 /* GithubUserResponseData.swift in Sources */,
 				4BA26C652CCB79EF00ED1929 /* GithubUser.swift in Sources */,
 				4BA26C682CCB7BEA00ED1929 /* GithubUserCell.swift in Sources */,
+				4BACF69F2CCC60A400315744 /* BaseViewModel.swift in Sources */,
 				4BCE5A712CC7B03400EA4865 /* RootRouter.swift in Sources */,
 				4BAA24792CC815740044D294 /* DatabaseManager.swift in Sources */,
 				4BA26C6E2CCBB01200ED1929 /* UIView+AutoLayout.swift in Sources */,

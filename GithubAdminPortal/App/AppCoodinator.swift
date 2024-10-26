@@ -7,14 +7,19 @@
 
 import UIKit
 
-final class AppCoodinator {
+final class AppCoodinator: Coordinator {
   private let container: DIContainer
   private let window: UIWindow?
   
   lazy var rootViewController: UINavigationController = {
-    let githubUserListVC = GithubUserListVC(container: container)
     return RootNavController(rootViewController: githubUserListVC)
   }()
+  
+  private var githubUserListVC: GithubUserListVC {
+    let viewModel = GithubUserListViewModel(coordinator: self)
+    let vc = GithubUserListVC(viewModel: viewModel)
+    return vc
+  }
   
   // MARK: - Coordinator
   
@@ -23,7 +28,7 @@ final class AppCoodinator {
     self.container = DIContainer()
   }
   
-  func start() {
+  override func start() {
     guard let window = window else {
       return
     }
@@ -31,7 +36,7 @@ final class AppCoodinator {
     window.makeKeyAndVisible()
   }
   
-  func finish() {
+  override func finsih() {
     
   }
   

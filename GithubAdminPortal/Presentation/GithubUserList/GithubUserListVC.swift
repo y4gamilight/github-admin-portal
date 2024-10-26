@@ -7,11 +7,10 @@
 
 import UIKit
 
-class GithubUserListVC: BaseViewController {
+class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
   private lazy var usersTableView: UITableView = {
     let tableView = UITableView()
     tableView.forAutolayout()
-    tableView.backgroundColor = .yellow
     return tableView
   }()
   
@@ -31,6 +30,7 @@ class GithubUserListVC: BaseViewController {
   
   override func configuration() {
     dataSource.registerCells(for: usersTableView)
+    dataSource.listener = viewModel
     usersTableView.reloadData()
   }
 }
