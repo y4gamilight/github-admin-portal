@@ -11,16 +11,26 @@ protocol GithubUserDetailsOutput {
 }
 
 class GithubUserDetailsViewModel: BaseViewModel {
-  var coordinator: AppCoodinator
+  var coordinator: GithubUserCoordinator
   weak var input: GithubUserDetailsInput?
   
-  init(coordinator: AppCoodinator) {
+  private let userName: String
+  
+  init(coordinator: GithubUserCoordinator, userName: String) {
     self.coordinator = coordinator
+    self.userName = userName
   }
 }
 
 extension GithubUserDetailsViewModel: GithubUserDetailsOutput {
   func fetchUserDetails() {
+    let userDetails = GithubUserDetails(userName: userName,
+                                        avatarURL: "https://example.png",
+                                        profileURL: "https://linkedin.con/in/\(userName)",
+                                        location: "location_\(userName)",
+                                        followers: userName.count,
+                                        followings: userName.count)
+    input?.updateUserDetails(user: userDetails)
   }
   
 }

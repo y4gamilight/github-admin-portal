@@ -1,5 +1,5 @@
 //
-//  AppCoodinator.swift
+//  AppCoordinator.swift
 //  GithubAdminPortal
 //
 //  Created by Thanh Le Tan [C] on 24/10/24.
@@ -7,21 +7,17 @@
 
 import UIKit
 
-final class AppCoodinator: Coordinator {
+final class AppCoordinator: Coordinator {
   private let container: DIContainer
   private let window: UIWindow?
   
   lazy var rootViewController: UINavigationController = {
-    return RootNavController(rootViewController: githubUserListVC)
+    let coordinator = GithubUserCoordinator(container: container)
+    coordinator.parent = self
+    addChild(coordinator)
+    let childVC = coordinator.makeRootViewController()
+    return RootNavController(rootViewController: childVC)
   }()
-  
-  private var githubUserListVC: GithubUserListVC {
-    let viewModel = GithubUserListViewModel(coordinator: self)
-    let vc = GithubUserListVC(viewModel: viewModel)
-    
-    viewModel.input = vc
-    return vc
-  }
   
   // MARK: - Coordinator
   
@@ -36,6 +32,7 @@ final class AppCoodinator: Coordinator {
     }
     window.rootViewController = rootViewController
     window.makeKeyAndVisible()
+    setupDependencies()
   }
   
   override func finsih() {

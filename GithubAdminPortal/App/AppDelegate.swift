@@ -11,14 +11,14 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
-  var appCoodinator: AppCoodinator?
+  var appCoordinator: AppCoordinator?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
     if #unavailable(iOS 13) {
       window = UIWindow(frame: UIScreen.main.bounds)
-      appCoodinator = AppCoodinator(window: window)
-      appCoodinator?.start()
+      appCoordinator = AppCoordinator(window: window)
+      appCoordinator?.start()
     }
     return true
   }

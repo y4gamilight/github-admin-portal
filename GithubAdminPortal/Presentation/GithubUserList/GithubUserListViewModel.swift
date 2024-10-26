@@ -12,9 +12,9 @@ protocol GithubUserListOutput {
 }
 
 class GithubUserListViewModel: BaseViewModel { 
-  var coordinator: AppCoodinator
+  var coordinator: GithubUserCoordinator
   weak var input: GithubUserListInput?
-  init(coordinator: AppCoodinator) {
+  init(coordinator: GithubUserCoordinator) {
     self.coordinator = coordinator
   }
 }
@@ -30,6 +30,6 @@ extension GithubUserListViewModel: GithubUserListOutput {
 
 extension GithubUserListViewModel: GithubUserDataSourceListener {
   func onSelectedGithubUserCell(_ item: GithubUserItemCell) {
-    debugPrint("Selected value \(item.userName)")
+    coordinator.navigateToUser(item.userName)
   }
 }

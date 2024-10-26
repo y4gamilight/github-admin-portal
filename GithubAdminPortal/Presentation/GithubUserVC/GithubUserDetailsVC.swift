@@ -10,7 +10,11 @@ protocol GithubUserDetailsInput: AnyObject {
 }
 
 final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> {
-
+  override func setup() {
+    super.setup()
+    view.backgroundColor = .blue
+    
+  }
 }
 
 extension GithubUserDetailsVC: GithubUserDetailsInput {
