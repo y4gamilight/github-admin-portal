@@ -9,9 +9,7 @@ import Foundation
 
 protocol BaseViewModel {
   associatedtype Input
-  associatedtype Output
   associatedtype C: Coordinator
   var coordinator: C { get set }
-  func transform(input: Input) -> Output
+  var input: Input { get set}
 }
-

@@ -18,6 +18,8 @@ final class AppCoodinator: Coordinator {
   private var githubUserListVC: GithubUserListVC {
     let viewModel = GithubUserListViewModel(coordinator: self)
     let vc = GithubUserListVC(viewModel: viewModel)
+    
+    viewModel.input = vc
     return vc
   }
   

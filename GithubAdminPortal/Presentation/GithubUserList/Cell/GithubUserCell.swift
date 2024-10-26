@@ -24,13 +24,13 @@ final class GithubUserCell: UITableViewCell {
   }
 
   enum Constant {
-    static let regularPadding = 16.0
-    static let smallPadding = 8.0
-    static let avatarSize = 80.0
-    static let xxSmallPadding = 4.0
+    static let regularPadding: CGFloat = 16.0
+    static let smallPadding: CGFloat = 8.0
+    static let avatarSize: CGFloat = 80.0
+    static let xxSmallPadding: CGFloat = 4.0
   }
   
-  static let identifierCell = String(describing: self)
+  static let identifierCell = "GithubUserCell"
 
   private lazy var cardView: UIView = {
     let view = UIView().forAutolayout()

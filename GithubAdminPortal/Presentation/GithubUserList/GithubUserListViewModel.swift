@@ -7,34 +7,24 @@
 
 import Foundation
 
-class GithubUserListViewModel: BaseViewModel {
+protocol GithubUserListOutput {
+  func fetchUsers()
+}
+
+class GithubUserListViewModel: BaseViewModel { 
   var coordinator: AppCoodinator
-  
+  weak var input: GithubUserListInput?
   init(coordinator: AppCoodinator) {
     self.coordinator = coordinator
   }
-  
-  func transform(input: Input) -> Output {
-    return Output { items in
-      
-    } onAppendItems: { items in
-      
-    } onShowError: { error in
-      
-    }
-
-  }
 }
 
-extension GithubUserListViewModel {
-  struct Input {
-    let getUsers: (() -> Void)
-  }
-  
-  struct Output {
-    let onUpdateItems: (([GithubUserItemCell]) -> Void)
-    let onAppendItems: (([GithubUserItemCell]) -> Void)
-    let onShowError: ((String) -> Void)
+extension GithubUserListViewModel: GithubUserListOutput {
+  func fetchUsers() {
+    let items = (1...20).map { i in
+      GithubUserItemCell(uid: "uid_\(i)", userName: "user\(i)", profileURL: "https://linkedin/user\(i)", imageView: URL(string: "https://example.com/avatar\(i).png"))
+    }
+    input?.updateUsers(items)
   }
 }
 

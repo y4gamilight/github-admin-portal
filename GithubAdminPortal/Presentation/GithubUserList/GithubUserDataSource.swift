@@ -13,12 +13,9 @@ protocol GithubUserDataSourceListener {
 
 final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
   var listener: GithubUserDataSourceListener?
-  private var items: [GithubUserItemCell]
+  private var items: [GithubUserItemCell] = []
 
   override init() {
-    items = (1...20).map { i in
-      GithubUserItemCell(uid: "uid_\(i)", userName: "user\(i)", profileURL: "https://linkedin/user\(i)", imageView: URL(string: "https://example.com/avatar\(i).png"))
-    }
     super.init()
   }
 
@@ -26,6 +23,10 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(GithubUserCell.self, forCellReuseIdentifier: GithubUserCell.identifierCell)
+  }
+
+  func updateItems(_ items: [GithubUserItemCell]) {
+    self.items = items
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
