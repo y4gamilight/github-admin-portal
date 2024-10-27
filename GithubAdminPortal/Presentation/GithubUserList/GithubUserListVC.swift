@@ -23,7 +23,7 @@ final class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
     navigationItem.title = "Github Users"
     view.backgroundColor = .blue
     view.addSubview(usersTableView)
-    usersTableView.addInnerConstraint([.top, .bottom, .left, .right], constant: 0)
+    usersTableView.addInnerConstraint([.top, .bottom, .leading, .trailing], constant: 0)
   }
   
   override func configuration() {

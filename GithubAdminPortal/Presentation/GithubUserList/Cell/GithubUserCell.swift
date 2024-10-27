@@ -32,44 +32,10 @@ final class GithubUserCell: UITableViewCell {
   
   static let identifierCell = "GithubUserCell"
 
-  private lazy var cardView: UIView = {
-    let view = UIView().forAutolayout()
+  private lazy var cardView: UserCardView = {
+    let view = UserCardView(detailView: hyperlinkLabel).forAutolayout()
     view.layer.cornerRadius = Constant.regularPadding
     view.backgroundColor = .white
-    return view
-  }()
-
-  private var avatarContainer: UIView = {
-    let view = UIView().forAutolayout()
-    view.layer.cornerRadius = Constant.xxSmallPadding
-    view.backgroundColor = .green
-    return view
-  }()
-  
-  private lazy var avatarImageView: UIImageView = {
-    let imageView = UIImageView().forAutolayout()
-    imageView.layer.cornerRadius = Constant.avatarSize / 2
-    imageView.clipsToBounds = true
-    return imageView
-  }()
-  
-  private lazy var stackView: UIStackView = {
-    let stackView = UIStackView().forAutolayout()
-    stackView.axis = .vertical
-    return stackView
-  }()
-
-  private lazy var usernameLabel: UILabel = {
-    let label = UILabel().forAutolayout()
-    label.font = .systemFont(ofSize: 16, weight: .bold)
-    label.textColor = .black
-    label.frame = .zero
-    return label
-  }()
-
-  private lazy var lineView: UIView = {
-    let view = UIView().forAutolayout()
-    view.backgroundColor = .gray
     return view
   }()
 
@@ -101,25 +67,10 @@ final class GithubUserCell: UITableViewCell {
     selectionStyle = .none
     contentView.addSubview(cardView)
     cardView.addInnerConstraint([.top, .leading, .bottom, .trailing], constant: Constant.smallPadding)
-    
-    cardView.addSubview(avatarContainer)
-    cardView.addSubview(stackView)
-    avatarContainer.addSubview(avatarImageView)
-    avatarContainer.addInnerConstraint([.width, .height], constant: Constant.avatarSize)
-    avatarContainer.addInnerConstraint([.top, .leading, .bottom], constant: Constant.smallPadding)
-    avatarImageView.addInnerConstraint([.top, .leading, .bottom, .trailing], constant: 0)
-
-    stackView.addArrangedSubview(usernameLabel)
-    stackView.addArrangedSubview(lineView)
-    stackView.addArrangedSubview(hyperlinkLabel)
-    lineView.addInnerConstraint(.height, constant: 1)
-    stackView.addInnerConstraint(.trailing, constant: Constant.xxSmallPadding)
-    stackView.relateTo(avatarContainer, relative: .alignTop, constant: Constant.xxSmallPadding)
-    stackView.relateTo(avatarContainer, relative: .right, constant: Constant.xxSmallPadding)
   }
   
   func configure(with model: Model) {
-    usernameLabel.text = model.userName
+    cardView.update(config: UserCardViewConfig( title: model.userName, url: model.imageView))
     
     let attributedString = NSMutableAttributedString(string: model.profileURL)
     attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: model.profileURL.count))

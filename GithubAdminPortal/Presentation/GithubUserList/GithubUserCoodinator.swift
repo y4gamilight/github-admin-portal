@@ -33,6 +33,7 @@ class GithubUserCoordinator: Coordinator {
   func navigateToUser(_ userName: String) {
     let viewModel = GithubUserDetailsViewModel(coordinator: self, userName: userName)
     let vc = GithubUserDetailsVC(viewModel: viewModel)
+    viewModel.input = vc
     rootViewController?.navigationController?.pushViewController(vc, animated: true)
   }
 }

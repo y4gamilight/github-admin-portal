@@ -1,6 +1,8 @@
+import UIKit
+
 struct GithubUserDetails {
   var userName: String
-  var avatarURL: String
+  var avatarURL: URL?
   var profileURL: String
   var location: String
   var followers: Int  

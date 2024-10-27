@@ -25,7 +25,7 @@ class GithubUserDetailsViewModel: BaseViewModel {
 extension GithubUserDetailsViewModel: GithubUserDetailsOutput {
   func fetchUserDetails() {
     let userDetails = GithubUserDetails(userName: userName,
-                                        avatarURL: "https://example.png",
+                                        avatarURL: URL(string: "https://example.png"),
                                         profileURL: "https://linkedin.con/in/\(userName)",
                                         location: "location_\(userName)",
                                         followers: userName.count,

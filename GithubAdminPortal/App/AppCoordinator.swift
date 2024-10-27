@@ -16,7 +16,9 @@ final class AppCoordinator: Coordinator {
     coordinator.parent = self
     addChild(coordinator)
     let childVC = coordinator.makeRootViewController()
-    return RootNavController(rootViewController: childVC)
+    let navBar = RootNavController(rootViewController: childVC)
+    navBar.navigationBar.isTranslucent = false
+    return navBar
   }()
   
   // MARK: - Coordinator
