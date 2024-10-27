@@ -3,7 +3,7 @@ import UIKit
 struct StatViewConfig {
   let stat: String
   let unit: String
-  let iconName: String
+  let iconName: String?
 }
 
 class StatView: UIView {
@@ -14,14 +14,17 @@ class StatView: UIView {
   private lazy var stackView: UIStackView = {
     let stackView = UIStackView().forAutolayout()
     stackView.axis = .vertical
-    stackView.spacing = 8
+    stackView.distribution = .fill
+    stackView.alignment = .center
     backgroundColor = .white
     return stackView
   }()
 
   private lazy var statIcon: UIImageView = {
     let imageView = UIImageView().forAutolayout()
-    imageView.image = UIImage(named: config.iconName)
+    if let image = config.iconName {
+      imageView.image = UIImage(named: image)
+    }
     return imageView
   }()
 
@@ -62,8 +65,10 @@ class StatView: UIView {
 
   func update(config: StatViewConfig) {
     self.config = config
-
     self.statLabel.text = config.stat
     self.unitLabel.text = config.unit
+    if let image = config.iconName {
+      self.statIcon.image = UIImage(named: image)
+    }
   }
 }

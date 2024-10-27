@@ -15,6 +15,7 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> 
     let stackView = UIStackView().forAutolayout()
     stackView.axis = .vertical
     stackView.alignment = .center
+    stackView.spacing = 24
     return stackView
   }()
 
@@ -46,18 +47,17 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> 
     let view = UIStackView().forAutolayout()
     view.axis = .horizontal
     view.distribution = .fillEqually
-    view.alignment = .center
-    
+    view.alignment = .fill
     return view
   }()
 
   private lazy var followerStatView: StatView = {
-    let view = StatView(config: .init(stat: "0", unit: "follower", iconName: "")).forAutolayout()
+    let view = StatView(config: .init(stat: "0", unit: "follower", iconName: Images.Name.icFollowers.rawValue)).forAutolayout()
     return view
   }()
 
   private lazy var followingStatView: StatView = {
-    let view = StatView(config: .init(stat: "0", unit: "following", iconName: "")).forAutolayout()
+    let view = StatView(config: .init(stat: "0", unit: "following", iconName: Images.Name.icFollowings.rawValue)).forAutolayout()
     return view
   }()
 
@@ -93,7 +93,6 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> 
 
     stackView.addArrangedSubview(userCardView)
     userCardView.addInnerConstraint([.leading, .trailing], constant: 0)
-
     userStatsContainer.addArrangedSubview(followerStatView)
     userStatsContainer.addArrangedSubview(followingStatView)
 
@@ -103,6 +102,8 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> 
     bioHeader.addInnerConstraint([.leading, .trailing], constant: 0)
     stackView.addArrangedSubview(bioTextView)
     bioTextView.addInnerConstraint([.leading, .trailing, .bottom], constant: 0)
+    
+    userStatsContainer.spacing = view.frame.size.width / 5
   }
   
   override func configuration() {
@@ -114,8 +115,8 @@ extension GithubUserDetailsVC: GithubUserDetailsInput {
   func updateUserDetails(user: GithubUserDetails) {
     locationLabel.text = user.location
     userCardView.update(config: UserCardViewConfig(title: user.userName, url: user.avatarURL))
-    followerStatView.update(config: StatViewConfig(stat: "\(user.followers)", unit: "followers", iconName: "followers"))
-    followingStatView.update(config: StatViewConfig(stat: "\(user.followings)", unit: "followings", iconName: "following"))
+    followerStatView.update(config: StatViewConfig(stat: "\(user.followers)", unit: "followers", iconName: nil))
+    followingStatView.update(config: StatViewConfig(stat: "\(user.followings)", unit: "followings", iconName: nil))
     
     bioTextView.text = "aetet"
   }
