@@ -22,7 +22,11 @@ class GithubUserCoordinator: Coordinator {
   }
   
   func makeRootViewController() -> UIViewController {
-    let viewModel = GithubUserListViewModel(coordinator: self)
+    guard let userService = container.resolve(type: IUserService.self) else {
+      fatalError("User service hasn't registerd")
+      return UIViewController()
+    }
+    let viewModel = GithubUserListViewModel(coordinator: self, userService: userService)
     let vc = GithubUserListVC(viewModel: viewModel)
     viewModel.input = vc
     

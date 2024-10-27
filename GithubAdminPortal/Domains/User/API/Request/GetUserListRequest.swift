@@ -12,7 +12,7 @@ struct GetUserListRequest: GPARequest {
     case perPage = "per_page"
   }
   
-  var path: String = "users"
+  var path: String = "/users"
   var method: GPAHTTPMethod = .get
   var parameters: [String : Any]? = nil
   var headers: [String : String]? = nil

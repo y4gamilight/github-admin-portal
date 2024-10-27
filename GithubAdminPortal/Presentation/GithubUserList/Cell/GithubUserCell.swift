@@ -13,13 +13,13 @@ final class GithubUserCell: UITableViewCell {
     let uid: String
     let userName: String
     let profileURL: String
-    let imageView: URL?
+    let imageURL: URL?
     
-    init(uid: String, userName: String = "", profileURL: String, imageView: URL? = nil) {
+    init(uid: String, userName: String = "", profileURL: String, imageURL: URL? = nil) {
       self.uid = uid
       self.userName = userName
       self.profileURL = profileURL
-      self.imageView = imageView
+      self.imageURL = imageURL
     }
   }
 
@@ -70,7 +70,7 @@ final class GithubUserCell: UITableViewCell {
   }
   
   func configure(with model: Model) {
-    cardView.update(config: UserCardViewConfig( title: model.userName, url: model.imageView))
+    cardView.update(config: UserCardViewConfig( title: model.userName, url: model.imageURL))
     
     let attributedString = NSMutableAttributedString(string: model.profileURL)
     attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: model.profileURL.count))

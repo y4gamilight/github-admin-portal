@@ -11,14 +11,13 @@ final class APIClientImp: IAPIClient {
   
   private let enviroment: APIEnvironment
   private let urlSession: URLSession
-  private let queue = DispatchQueue(label: "githubadmin-networking-client", qos: .background)
   
   init(enviroment: APIEnvironment, urlSession: URLSession) {
     self.enviroment = enviroment
     self.urlSession = urlSession
   }
   
-  func excute<R: GPARequest>(request: R, completion: @escaping APICompletionSingleResult, failure: @escaping APIFailureHandler) {
+  func excute<R: GPARequest>(request: R, completion: @escaping (R.Response) -> Void, failure: @escaping APIFailureHandler) {
     guard let urlRequest = request.asUrlRequest(baseURL: enviroment.baseURL, headerDefault: enviroment.headerDefault) else {
       return failure(APIError.badRequest)
     }
@@ -33,7 +32,7 @@ final class APIClientImp: IAPIClient {
     }
   }
   
-  func excuteCollection<R: GPARequest>(request: R, completion: @escaping APICompletionCollectionResult, failure: @escaping APIFailureHandler) {
+  func excuteCollection<R: GPARequest>(request: R, completion: @escaping ([R.Response]) -> Void, failure: @escaping APIFailureHandler) {
     guard let urlRequest = request.asUrlRequest(baseURL: enviroment.baseURL, headerDefault: enviroment.headerDefault) else {
       return failure(APIError.badRequest)
     }

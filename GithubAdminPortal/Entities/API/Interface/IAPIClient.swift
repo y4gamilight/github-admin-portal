@@ -6,12 +6,9 @@
 //
 
 import Foundation
-
-typealias APICompletionSingleResult = ((GPAResponse) -> Void)
-typealias APICompletionCollectionResult = (([GPAResponse]) -> Void)
 typealias APIFailureHandler = ((APIError) -> Void)
 
 protocol IAPIClient {
-  func excute<R: GPARequest>(request: R, completion: @escaping APICompletionSingleResult, failure: @escaping APIFailureHandler)
-  func excuteCollection<R: GPARequest>(request: R, completion: @escaping APICompletionCollectionResult, failure: @escaping APIFailureHandler)
+  func excute<R: GPARequest>(request: R, completion: @escaping (R.Response) -> Void, failure: @escaping APIFailureHandler)
+  func excuteCollection<R: GPARequest>(request: R, completion: @escaping ([R.Response]) -> Void, failure: @escaping APIFailureHandler)
 }

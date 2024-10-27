@@ -14,17 +14,27 @@ protocol GithubUserListOutput {
 class GithubUserListViewModel: BaseViewModel { 
   var coordinator: GithubUserCoordinator
   weak var input: GithubUserListInput?
-  init(coordinator: GithubUserCoordinator) {
+  private let userService: IUserService
+  init(coordinator: GithubUserCoordinator, userService: IUserService) {
     self.coordinator = coordinator
+    self.userService = userService
   }
 }
 
 extension GithubUserListViewModel: GithubUserListOutput {
   func fetchUsers() {
-    let items = (1...20).map { i in
-      GithubUserItemCell(uid: "uid_\(i)", userName: "user\(i)", profileURL: "https://linkedin/user\(i)", imageView: URL(string: "https://example.com/avatar\(i).png"))
+    userService.getAll(since: nil) {[weak self] response, error in
+      guard let response = response else {
+        return
+      }
+      let items = response.map { element in
+        let url = URL(string: element.avatarURL)
+        return GithubUserItemCell(uid: "\(element.id)", userName: element.userName, profileURL: element.profileURL, imageURL: url)
+      }
+      DispatchQueue.main.async {
+        self?.input?.updateUsers(items)
+      }
     }
-    input?.updateUsers(items)
   }
 }
 

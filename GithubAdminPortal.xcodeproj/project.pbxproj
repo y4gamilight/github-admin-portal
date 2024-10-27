@@ -12,7 +12,10 @@
 		4B24DDD02CCDB634001C343F /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24DDCF2CCDB634001C343F /* StatView.swift */; };
 		4B26BA7C2CCDE4FC0061A33D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B26BA7A2CCDE4FC0061A33D /* Assets.xcassets */; };
 		4B26BA7D2CCDE4FC0061A33D /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B26BA7B2CCDE4FC0061A33D /* Images.swift */; };
+		4B31A45C2CCA73D900BCC588 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31A45B2CCA73D900BCC588 /* UserService.swift */; };
+		4B31A45E2CCA73E100BCC588 /* IUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31A45D2CCA73E100BCC588 /* IUserService.swift */; };
 		4B31A4602CCA7F9F00BCC588 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31A45F2CCA7F9F00BCC588 /* DIContainer.swift */; };
+		4B35D31E2CCE71E800DC7607 /* JSONFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35D31D2CCE71E800DC7607 /* JSONFileReader.swift */; };
 		4B5F41872CC965ED00FC2E17 /* GetUserListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F41842CC965ED00FC2E17 /* GetUserListRequest.swift */; };
 		4B5F41892CC967B900FC2E17 /* GithubUserResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F41882CC967B900FC2E17 /* GithubUserResponseData.swift */; };
 		4B6277E62CC8628200C7FEA9 /* IAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6277E52CC8628200C7FEA9 /* IAPIClient.swift */; };
@@ -72,7 +75,10 @@
 		4B24DDCF2CCDB634001C343F /* StatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		4B26BA7A2CCDE4FC0061A33D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B26BA7B2CCDE4FC0061A33D /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		4B31A45B2CCA73D900BCC588 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		4B31A45D2CCA73E100BCC588 /* IUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserService.swift; sourceTree = "<group>"; };
 		4B31A45F2CCA7F9F00BCC588 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		4B35D31D2CCE71E800DC7607 /* JSONFileReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFileReader.swift; sourceTree = "<group>"; };
 		4B5F41842CC965ED00FC2E17 /* GetUserListRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserListRequest.swift; sourceTree = "<group>"; };
 		4B5F41882CC967B900FC2E17 /* GithubUserResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserResponseData.swift; sourceTree = "<group>"; };
 		4B6277E52CC8628200C7FEA9 /* IAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPIClient.swift; sourceTree = "<group>"; };
@@ -159,6 +165,14 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		4B35D31C2CCE71E800DC7607 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4B35D31D2CCE71E800DC7607 /* JSONFileReader.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		4B5F417F2CC965ED00FC2E17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +210,8 @@
 		4B5F41852CC965ED00FC2E17 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4B31A45B2CCA73D900BCC588 /* UserService.swift */,
+				4B31A45D2CCA73E100BCC588 /* IUserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -265,6 +281,7 @@
 		4BA26C692CCBADFF00ED1929 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				4B35D31C2CCE71E800DC7607 /* Helper */,
 				4B9E8D362CCA97EF00671249 /* Base */,
 				4BA26C6A2CCBAE1B00ED1929 /* Extension */,
 			);
@@ -557,6 +574,7 @@
 				4B26BA7D2CCDE4FC0061A33D /* Images.swift in Sources */,
 				4BACF6A12CCC60F800315744 /* Coordinator.swift in Sources */,
 				4BACF6A32CCC616300315744 /* GithubUserListViewModel.swift in Sources */,
+				4B35D31E2CCE71E800DC7607 /* JSONFileReader.swift in Sources */,
 				4BCE5A772CC7B03400EA4865 /* GithubAdminPortal.xcdatamodeld in Sources */,
 				4BB7251D2CCC99350087997E /* AppCoordinator.swift in Sources */,
 				4B5F41892CC967B900FC2E17 /* GithubUserResponseData.swift in Sources */,
@@ -580,7 +598,9 @@
 				4B31A4602CCA7F9F00BCC588 /* DIContainer.swift in Sources */,
 				4BB7251B2CCC980C0087997E /* GithubUserCoodinator.swift in Sources */,
 				4B9E8D332CCA95B600671249 /* GithubUserListVC.swift in Sources */,
+				4B31A45C2CCA73D900BCC588 /* UserService.swift in Sources */,
 				4BAA247B2CC81B8C0044D294 /* APIClientImp.swift in Sources */,
+				4B31A45E2CCA73E100BCC588 /* IUserService.swift in Sources */,
 				4B1251812CC89429004E2C65 /* APIEnvironment.swift in Sources */,
 				4BA26C632CCB790700ED1929 /* GithubUserDataSource.swift in Sources */,
 				4BB725162CCC8F640087997E /* GithubUserDetailsViewModel.swift in Sources */,

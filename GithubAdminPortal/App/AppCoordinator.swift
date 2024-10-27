@@ -29,20 +29,23 @@ final class AppCoordinator: Coordinator {
   }
   
   override func start() {
-    guard let window = window else {
-      return
-    }
-    window.rootViewController = rootViewController
-    window.makeKeyAndVisible()
     setupDependencies()
+    if let window = window {
+      window.rootViewController = rootViewController
+      window.makeKeyAndVisible()
+    }
   }
   
   override func finsih() {
-    
+    container.release(type: IAPIClient.self)
+    container.release(type: IUserService.self)
   }
   
   private func setupDependencies() {
     container.register(type: IAPIClient.self, service: APIClientImp(enviroment: .dev, urlSession: URLSession.shared))
+    if let apiClient = container.resolve(type: IAPIClient.self) {
+      container.register(type: IUserService.self, service: UserService(api: apiClient))
+    }
   }
   
 }
