@@ -22,4 +22,15 @@ final class UserService: IUserService {
       completion?(nil, error)
     }
   }
+  
+  func getUserByUserName(_ userName: String, completion: ((GithubUserDetails?, APIError?) -> Void)?) {
+    let paramRequest = GetUserDetailRequest(username: userName)
+    api.excute(request: paramRequest) { (response: GithubUserResponseData) in
+      let userDetails = GithubUserDetails(userName: response.login, avatarURL: URL(string: response.avatarUrl), profileURL: response.htmlUrl, location: response.location ?? "", followers: response.followers ?? 0, followings: response.following ?? 0)
+      completion?(userDetails, nil)
+    } failure: { error in
+      completion?(nil, error)
+    }
+
+  }
 }

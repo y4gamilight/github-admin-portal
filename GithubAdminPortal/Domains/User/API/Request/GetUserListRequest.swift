@@ -14,7 +14,6 @@ struct GetUserListRequest: GPARequest {
   
   var path: String = "/users"
   var method: GPAHTTPMethod = .get
-  var parameters: [String : Any]? = nil
   var headers: [String : String]? = nil
   var params: [String : Any]? = nil
   var queries: [String : Any]?

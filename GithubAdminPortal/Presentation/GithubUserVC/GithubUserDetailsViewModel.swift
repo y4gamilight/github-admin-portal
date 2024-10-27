@@ -15,22 +15,25 @@ class GithubUserDetailsViewModel: BaseViewModel {
   weak var input: GithubUserDetailsInput?
   
   private let userName: String
+  private let userService: IUserService
   
-  init(coordinator: GithubUserCoordinator, userName: String) {
+  init(coordinator: GithubUserCoordinator, userName: String, userService: IUserService) {
     self.coordinator = coordinator
     self.userName = userName
+    self.userService = userService
   }
 }
 
 extension GithubUserDetailsViewModel: GithubUserDetailsOutput {
   func fetchUserDetails() {
-    let userDetails = GithubUserDetails(userName: userName,
-                                        avatarURL: URL(string: "https://example.png"),
-                                        profileURL: "https://linkedin.con/in/\(userName)",
-                                        location: "location_\(userName)",
-                                        followers: userName.count,
-                                        followings: userName.count)
-    input?.updateUserDetails(user: userDetails)
+    userService.getUserByUserName(userName) {[weak self] userDetails, error in
+      guard let userDetails = userDetails else {
+        return
+      }
+      DispatchQueue.main.async {
+        self?.input?.updateUserDetails(user: userDetails)
+      }
+    }
   }
   
 }

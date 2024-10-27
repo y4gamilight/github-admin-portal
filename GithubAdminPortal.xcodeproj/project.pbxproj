@@ -16,6 +16,7 @@
 		4B31A45E2CCA73E100BCC588 /* IUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31A45D2CCA73E100BCC588 /* IUserService.swift */; };
 		4B31A4602CCA7F9F00BCC588 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31A45F2CCA7F9F00BCC588 /* DIContainer.swift */; };
 		4B35D31E2CCE71E800DC7607 /* JSONFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35D31D2CCE71E800DC7607 /* JSONFileReader.swift */; };
+		4B4AEB9F2CCE90DC004CBED1 /* GetUserDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4AEB9E2CCE90DC004CBED1 /* GetUserDetailRequest.swift */; };
 		4B5F41872CC965ED00FC2E17 /* GetUserListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F41842CC965ED00FC2E17 /* GetUserListRequest.swift */; };
 		4B5F41892CC967B900FC2E17 /* GithubUserResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F41882CC967B900FC2E17 /* GithubUserResponseData.swift */; };
 		4B6277E62CC8628200C7FEA9 /* IAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6277E52CC8628200C7FEA9 /* IAPIClient.swift */; };
@@ -79,6 +80,7 @@
 		4B31A45D2CCA73E100BCC588 /* IUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserService.swift; sourceTree = "<group>"; };
 		4B31A45F2CCA7F9F00BCC588 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		4B35D31D2CCE71E800DC7607 /* JSONFileReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFileReader.swift; sourceTree = "<group>"; };
+		4B4AEB9E2CCE90DC004CBED1 /* GetUserDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserDetailRequest.swift; sourceTree = "<group>"; };
 		4B5F41842CC965ED00FC2E17 /* GetUserListRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserListRequest.swift; sourceTree = "<group>"; };
 		4B5F41882CC967B900FC2E17 /* GithubUserResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserResponseData.swift; sourceTree = "<group>"; };
 		4B6277E52CC8628200C7FEA9 /* IAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPIClient.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				4B5F41842CC965ED00FC2E17 /* GetUserListRequest.swift */,
+				4B4AEB9E2CCE90DC004CBED1 /* GetUserDetailRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				4BACF6A32CCC616300315744 /* GithubUserListViewModel.swift in Sources */,
 				4B35D31E2CCE71E800DC7607 /* JSONFileReader.swift in Sources */,
 				4BCE5A772CC7B03400EA4865 /* GithubAdminPortal.xcdatamodeld in Sources */,
+				4B4AEB9F2CCE90DC004CBED1 /* GetUserDetailRequest.swift in Sources */,
 				4BB7251D2CCC99350087997E /* AppCoordinator.swift in Sources */,
 				4B5F41892CC967B900FC2E17 /* GithubUserResponseData.swift in Sources */,
 				4BB725172CCC8F640087997E /* GithubUserDetailsVC.swift in Sources */,
