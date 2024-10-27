@@ -10,32 +10,49 @@ import UIKit
 typealias GithubUserItemCell = GithubUserCell.Model
 final class GithubUserCell: UITableViewCell {
   struct Model {
+    let uid: String
     let userName: String
+    let profileURL: String
     let imageView: URL?
     
-    init(userName: String = "", imageView: URL? = nil) {
+    init(uid: String, userName: String = "", profileURL: String, imageView: URL? = nil) {
+      self.uid = uid
       self.userName = userName
+      self.profileURL = profileURL
       self.imageView = imageView
     }
   }
+
+  enum Constant {
+    static let regularPadding: CGFloat = 16.0
+    static let smallPadding: CGFloat = 8.0
+    static let avatarSize: CGFloat = 80.0
+    static let xxSmallPadding: CGFloat = 4.0
+  }
   
-  private lazy var avatarImageView: UIImageView = {
-    let imageView = UIImageView()
-    imageView.forAutolayout()
-    imageView.layer.cornerRadius = 20
-    imageView.clipsToBounds = true
-    return imageView
+  static let identifierCell = "GithubUserCell"
+
+  private lazy var cardView: UserCardView = {
+    let view = UserCardView(detailView: hyperlinkLabel).forAutolayout()
+    view.layer.cornerRadius = Constant.regularPadding
+    view.backgroundColor = .white
+    return view
   }()
-  
-  private lazy var usernameLabel: UILabel = {
-    let label = UILabel()
-    label.forAutolayout()
-    label.font = .systemFont(ofSize: 16, weight: .bold)
-    label.textColor = .red
-    label.backgroundColor = .white
-    label.frame = .zero
+
+  private lazy var hyperlinkLabel: UILabel = {
+    let label = UILabel().forAutolayout()
+    label.isUserInteractionEnabled = true
+    label.textColor = .blue
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hyperlinkTapped))
+    label.addGestureRecognizer(tapGesture)
     return label
   }()
+
+  @objc private func hyperlinkTapped() {
+    // Handle hyperlink tap action
+    debugPrint("Hyperlink tapped")
+  }
+
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -47,13 +64,17 @@ final class GithubUserCell: UITableViewCell {
   }
   
   private func setupView() {
-    addSubview(usernameLabel)
-    usernameLabel.addInnerConstraint([.top, .leading, .bottom, .trailing], constant: 0)
+    selectionStyle = .none
+    contentView.addSubview(cardView)
+    cardView.addInnerConstraint([.top, .leading, .bottom, .trailing], constant: Constant.smallPadding)
   }
   
   func configure(with model: Model) {
-    avatarImageView.backgroundColor = UIColor.purple
-    usernameLabel.text = model.userName
+    cardView.update(config: UserCardViewConfig( title: model.userName, url: model.imageView))
+    
+    let attributedString = NSMutableAttributedString(string: model.profileURL)
+    attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: model.profileURL.count))
+    hyperlinkLabel.attributedText = attributedString
   }
   
 }

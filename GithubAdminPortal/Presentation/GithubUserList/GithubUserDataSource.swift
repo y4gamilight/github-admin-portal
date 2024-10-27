@@ -7,21 +7,26 @@
 
 import UIKit
 
+protocol GithubUserDataSourceListener {
+  func onSelectedGithubUserCell(_ item: GithubUserItemCell)
+}
+
 final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
-  
-  private var items: [GithubUserItemCell]
+  var listener: GithubUserDataSourceListener?
+  private var items: [GithubUserItemCell] = []
 
   override init() {
-    items = (1...20).map { i in
-      GithubUserItemCell(userName: "user\(i)", imageView: URL(string: "https://example.com/avatar\(i).png"))
-    }
     super.init()
   }
 
   func registerCells(for tableView: UITableView) {
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.register(GithubUserCell.self, forCellReuseIdentifier: "GithubUserCell")
+    tableView.register(GithubUserCell.self, forCellReuseIdentifier: GithubUserCell.identifierCell)
+  }
+
+  func updateItems(_ items: [GithubUserItemCell]) {
+    self.items = items
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,7 +34,7 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "GithubUserCell", for: indexPath) as! GithubUserCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: GithubUserCell.identifierCell, for: indexPath) as! GithubUserCell
     let item = items[indexPath.row]
     cell.configure(with: item)
     return cell
@@ -37,5 +42,13 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard indexPath.row < items.count else {
+      assertionFailure("Indexpath out of range.")
+      return
+    }
+    listener?.onSelectedGithubUserCell(items[indexPath.row])
   }
 }
