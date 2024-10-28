@@ -80,6 +80,8 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> 
 
   override func setup() { 
     navigationItem.title = "User Details" 
+    navigationController?.navigationBar.hideBackTitle()
+
     view.addSubview(stackView)
     stackView.addInnerConstraint([.top, .leading, .trailing, .bottom], constant: 0)
 

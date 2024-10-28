@@ -95,12 +95,8 @@ class UserDataSource: IUserDataSource {
   }
   
   private func mapDetail(_ entity: GithubUserEntity) -> GithubUserDetails? {
-    var avatarURL: URL?
-    if let path = entity.avatarURL {
-      avatarURL = URL(string: path)
-    }
     return GithubUserDetails(userName: entity.login ?? "",
-                             avatarURL: avatarURL,
+                             avatarURL: entity.avatarURL,
                              profileURL: entity.htmlURL ?? "",
                              location: entity.location ?? "",
                              followers: Int(entity.followers),

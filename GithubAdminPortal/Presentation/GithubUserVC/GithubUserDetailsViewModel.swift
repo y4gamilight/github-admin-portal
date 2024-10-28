@@ -27,7 +27,9 @@ class GithubUserDetailsViewModel: BaseViewModel {
 extension GithubUserDetailsViewModel: GithubUserDetailsOutput {
   func fetchUserDetails() {
     userService.fetchUserByUserName(userName, onCompletion: {[weak self] userDetails in
-      self?.input?.updateUserDetails(user: userDetails)
+      DispatchQueue.main.async {
+        self?.input?.updateUserDetails(user: userDetails)
+      }
     }, onFailure: { error in
       
     })

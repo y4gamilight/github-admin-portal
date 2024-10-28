@@ -34,7 +34,7 @@ final class UserService: IUserService {
   func fetchUserByUserName(_ userName: String, onCompletion: ((GithubUserDetails) -> Void)?, onFailure:((APIError) -> Void)?) {
     let paramRequest = GetUserDetailRequest(username: userName)
     api.getUser(paramRequest, onCompletion: { response in
-      let userDetails = GithubUserDetails(userName: response.login, avatarURL: URL(string: response.avatarUrl), profileURL: response.htmlUrl, location: response.location ?? "", followers: response.followers ?? 0, followings: response.following ?? 0)
+      let userDetails = GithubUserDetails(userName: response.login, avatarURL: response.avatarUrl, profileURL: response.htmlUrl, location: response.location ?? "", followers: response.followers ?? 0, followings: response.following ?? 0)
       onCompletion?(userDetails)
     }, onFailure: { error in
       onFailure?(error)

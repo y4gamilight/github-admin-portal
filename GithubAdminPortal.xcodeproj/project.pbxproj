@@ -18,6 +18,14 @@
 		4B24DDD02CCDB634001C343F /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24DDCF2CCDB634001C343F /* StatView.swift */; };
 		4B26BA7C2CCDE4FC0061A33D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B26BA7A2CCDE4FC0061A33D /* Assets.xcassets */; };
 		4B26BA7D2CCDE4FC0061A33D /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B26BA7B2CCDE4FC0061A33D /* Images.swift */; };
+		4B293EDB2CCFE19E0052BDA5 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B293EDA2CCFE19E0052BDA5 /* UINavigationBar+Extension.swift */; };
+		4B293EDD2CCFE3450052BDA5 /* LazyLoadUserAvatarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B293EDC2CCFE3450052BDA5 /* LazyLoadUserAvatarManager.swift */; };
+		4B293EE02CCFE4700052BDA5 /* AsyncOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B293EDF2CCFE4700052BDA5 /* AsyncOperator.swift */; };
+		4B293EE22CCFE48F0052BDA5 /* LazyOperatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B293EE12CCFE48F0052BDA5 /* LazyOperatorManager.swift */; };
+		4B293EE42CCFE6870052BDA5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B293EE32CCFE6870052BDA5 /* Constants.swift */; };
+		4B293EE62CCFE6F00052BDA5 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B293EE52CCFE6F00052BDA5 /* Data+Extension.swift */; };
+		4B293EE92CCFF3020052BDA5 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B293EE82CCFF3020052BDA5 /* WebVC.swift */; };
+		4B293EEB2CCFF31C0052BDA5 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B293EEA2CCFF31C0052BDA5 /* WebViewModel.swift */; };
 		4B31A45C2CCA73D900BCC588 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31A45B2CCA73D900BCC588 /* UserService.swift */; };
 		4B31A45E2CCA73E100BCC588 /* IUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31A45D2CCA73E100BCC588 /* IUserService.swift */; };
 		4B31A4602CCA7F9F00BCC588 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31A45F2CCA7F9F00BCC588 /* DIContainer.swift */; };
@@ -88,6 +96,14 @@
 		4B24DDCF2CCDB634001C343F /* StatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		4B26BA7A2CCDE4FC0061A33D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B26BA7B2CCDE4FC0061A33D /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		4B293EDA2CCFE19E0052BDA5 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
+		4B293EDC2CCFE3450052BDA5 /* LazyLoadUserAvatarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyLoadUserAvatarManager.swift; sourceTree = "<group>"; };
+		4B293EDF2CCFE4700052BDA5 /* AsyncOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperator.swift; sourceTree = "<group>"; };
+		4B293EE12CCFE48F0052BDA5 /* LazyOperatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyOperatorManager.swift; sourceTree = "<group>"; };
+		4B293EE32CCFE6870052BDA5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4B293EE52CCFE6F00052BDA5 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		4B293EE82CCFF3020052BDA5 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
+		4B293EEA2CCFF31C0052BDA5 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		4B31A45B2CCA73D900BCC588 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		4B31A45D2CCA73E100BCC588 /* IUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserService.swift; sourceTree = "<group>"; };
 		4B31A45F2CCA7F9F00BCC588 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
@@ -205,9 +221,28 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		4B293EDE2CCFE4050052BDA5 /* Operator */ = {
+			isa = PBXGroup;
+			children = (
+				4B293EDF2CCFE4700052BDA5 /* AsyncOperator.swift */,
+				4B293EE12CCFE48F0052BDA5 /* LazyOperatorManager.swift */,
+			);
+			path = Operator;
+			sourceTree = "<group>";
+		};
+		4B293EE72CCFF2D70052BDA5 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				4B293EE82CCFF3020052BDA5 /* WebVC.swift */,
+				4B293EEA2CCFF31C0052BDA5 /* WebViewModel.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		4B35D31C2CCE71E800DC7607 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				4B293EDE2CCFE4050052BDA5 /* Operator */,
 				4B35D31D2CCE71E800DC7607 /* JSONFileReader.swift */,
 			);
 			path = Helper;
@@ -291,6 +326,7 @@
 				4BA26C622CCB790700ED1929 /* GithubUserDataSource.swift */,
 				4BACF6A22CCC616300315744 /* GithubUserListViewModel.swift */,
 				4BB7251A2CCC980C0087997E /* GithubUserCoodinator.swift */,
+				4B293EDC2CCFE3450052BDA5 /* LazyLoadUserAvatarManager.swift */,
 			);
 			path = GithubUserList;
 			sourceTree = "<group>";
@@ -336,6 +372,8 @@
 			children = (
 				4BA26C6B2CCBAF4600ED1929 /* UIView+Extension.swift */,
 				4BA26C6D2CCBB01200ED1929 /* UIView+AutoLayout.swift */,
+				4B293EDA2CCFE19E0052BDA5 /* UINavigationBar+Extension.swift */,
+				4B293EE52CCFE6F00052BDA5 /* Data+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -356,6 +394,7 @@
 				4B26BA792CCDE4FC0061A33D /* Images */,
 				4BCE5A722CC7B03400EA4865 /* Main.storyboard */,
 				4BCE5A7A2CC7B03600EA4865 /* LaunchScreen.storyboard */,
+				4B293EE32CCFE6870052BDA5 /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -363,6 +402,7 @@
 		4BAA24732CC810D70044D294 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				4B293EE72CCFF2D70052BDA5 /* WebView */,
 				4BB725212CCCA2FA0087997E /* CommonViews */,
 				4BB725132CCC8F640087997E /* GithubUserVC */,
 				4B9E8D3A2CCA9B0900671249 /* Root */,
@@ -621,12 +661,16 @@
 				4BACF6A12CCC60F800315744 /* Coordinator.swift in Sources */,
 				4BACF6A32CCC616300315744 /* GithubUserListViewModel.swift in Sources */,
 				4B35D31E2CCE71E800DC7607 /* JSONFileReader.swift in Sources */,
+				4B293EE92CCFF3020052BDA5 /* WebVC.swift in Sources */,
 				4BCE5A772CC7B03400EA4865 /* GithubAdminPortal.xcdatamodeld in Sources */,
 				4B4AEB9F2CCE90DC004CBED1 /* GetUserDetailRequest.swift in Sources */,
 				4BB7251D2CCC99350087997E /* AppCoordinator.swift in Sources */,
 				4B5F41892CC967B900FC2E17 /* GithubUserResponseData.swift in Sources */,
 				4BB725172CCC8F640087997E /* GithubUserDetailsVC.swift in Sources */,
+				4B293EE22CCFE48F0052BDA5 /* LazyOperatorManager.swift in Sources */,
 				4BA26C652CCB79EF00ED1929 /* GithubUser.swift in Sources */,
+				4B293EDD2CCFE3450052BDA5 /* LazyLoadUserAvatarManager.swift in Sources */,
+				4B293EDB2CCFE19E0052BDA5 /* UINavigationBar+Extension.swift in Sources */,
 				4BA26C682CCB7BEA00ED1929 /* GithubUserCell.swift in Sources */,
 				4B2210EF2CCFA50900C98EC1 /* IUserAPI.swift in Sources */,
 				4BACF69F2CCC60A400315744 /* BaseViewModel.swift in Sources */,
@@ -634,6 +678,7 @@
 				4BAA24792CC815740044D294 /* DatabaseManager.swift in Sources */,
 				4BA26C6E2CCBB01200ED1929 /* UIView+AutoLayout.swift in Sources */,
 				4B9E8D382CCA97F900671249 /* BaseViewController.swift in Sources */,
+				4B293EE42CCFE6870052BDA5 /* Constants.swift in Sources */,
 				4B6277EC2CC863B600C7FEA9 /* GPAResponse.swift in Sources */,
 				4BA26C6C2CCBAF4600ED1929 /* UIView+Extension.swift in Sources */,
 				4BCE5A6D2CC7B03400EA4865 /* AppDelegate.swift in Sources */,
@@ -646,6 +691,9 @@
 				4B1796DB2CCF839200F850D3 /* IUserDataSource.swift in Sources */,
 				4B31A4602CCA7F9F00BCC588 /* DIContainer.swift in Sources */,
 				4BB7251B2CCC980C0087997E /* GithubUserCoodinator.swift in Sources */,
+				4B293EEB2CCFF31C0052BDA5 /* WebViewModel.swift in Sources */,
+				4B293EE62CCFE6F00052BDA5 /* Data+Extension.swift in Sources */,
+				4B293EE02CCFE4700052BDA5 /* AsyncOperator.swift in Sources */,
 				4B9E8D332CCA95B600671249 /* GithubUserListVC.swift in Sources */,
 				4B31A45C2CCA73D900BCC588 /* UserService.swift in Sources */,
 				4BAA247B2CC81B8C0044D294 /* APIClientImp.swift in Sources */,

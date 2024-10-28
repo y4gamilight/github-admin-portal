@@ -12,4 +12,7 @@ struct Colors {
   static let secondaryBg = UIColor(named: "secondaryBg")!
   static let primaryContent = UIColor(named: "primaryContent")!
   static let secondaryContent = UIColor(named: "secondaryContent")!
+  static let tertiaryBg = UIColor(named: "tertiaryBg")!
+  
+  static let placeholderAvatarBg = Colors.tertiaryBg
 }
