@@ -7,4 +7,5 @@ struct GithubUserDetails {
   var location: String
   var followers: Int  
   var followings: Int
+  var blog: String
 }

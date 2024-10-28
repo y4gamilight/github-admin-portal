@@ -19,6 +19,10 @@ final class UserService: IUserService {
     return dataSource.getAll()
   }
   
+  func getLocalUserByUserName(_ userName: String) -> GithubUserDetails? {
+    return dataSource.getBelongTo(name: userName)
+  }
+  
   func fetchAll(since: Int?, onCompletion: (([GithubUser]) -> Void)?, onFailure: ((APIError) -> Void)?) {
     let paramRequest = GetUserListRequest(since: since)
     api.getAll(paramRequest, onCompletion: {[weak self] response in
@@ -34,7 +38,7 @@ final class UserService: IUserService {
   func fetchUserByUserName(_ userName: String, onCompletion: ((GithubUserDetails) -> Void)?, onFailure:((APIError) -> Void)?) {
     let paramRequest = GetUserDetailRequest(username: userName)
     api.getUser(paramRequest, onCompletion: { response in
-      let userDetails = GithubUserDetails(userName: response.login, avatarURL: response.avatarUrl, profileURL: response.htmlUrl, location: response.location ?? "", followers: response.followers ?? 0, followings: response.following ?? 0)
+      let userDetails = GithubUserDetails(userName: response.login, avatarURL: response.avatarUrl, profileURL: response.htmlUrl, location: response.location ?? "", followers: response.followers ?? 0, followings: response.following ?? 0, blog: response.blog ?? "")
       onCompletion?(userDetails)
     }, onFailure: { error in
       onFailure?(error)

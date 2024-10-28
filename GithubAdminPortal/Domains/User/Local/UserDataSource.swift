@@ -100,6 +100,7 @@ class UserDataSource: IUserDataSource {
                              profileURL: entity.htmlURL ?? "",
                              location: entity.location ?? "",
                              followers: Int(entity.followers),
-                             followings: Int(entity.following))
+                             followings: Int(entity.following),
+                             blog: entity.blog ?? entity.bio ?? "")
   }
 }

@@ -63,6 +63,9 @@ class UserCardView: UIView {
   private var config: UserCardViewConfig? {
     didSet {
       usernameLabel.text = config?.title
+      if let url = config?.url {
+        avatarImageView.imageFromURLString(url, defaultImage: nil)
+      }
     }
   }
   
@@ -97,6 +100,10 @@ class UserCardView: UIView {
     stackView.addInnerConstraint(.trailing, constant: Constant.smallPadding)
     stackView.relateTo(avatarContainer, relative: .alignTop, constant: Constant.xxSmallPadding)
     stackView.relateTo(avatarContainer, relative: .right, constant: Constant.regularPadding)
+    
+    layer.cornerRadius = Constant.regularPadding
+    backgroundColor = .white
+    addShadow()
   }
 
   func update(config: UserCardViewConfig) {

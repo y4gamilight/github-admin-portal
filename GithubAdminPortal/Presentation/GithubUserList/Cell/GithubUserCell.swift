@@ -37,13 +37,6 @@ final class GithubUserCell: UITableViewCell {
 
   private lazy var cardView: UserCardView = {
     let view = UserCardView(detailView: hyperlinkLabel).forAutolayout()
-    
-    view.backgroundColor = .white
-    view.layer.shadowColor = UIColor.black.cgColor
-    view.layer.shadowOpacity = 0.2
-    view.layer.shadowOffset = CGSize(width: 0, height: 2)
-    view.layer.shadowRadius = 4
-    view.layer.cornerRadius = Constant.regularPadding
     return view
   }()
 
@@ -88,7 +81,7 @@ final class GithubUserCell: UITableViewCell {
   
   func configure(with model: Model) {
     self.model = model 
-    cardView.update(config: UserCardViewConfig( title: model.userName, url: model.avatarURL))
+    cardView.update(config: UserCardViewConfig( title: model.userName, url: nil))
     
     let attributedString = NSMutableAttributedString(string: model.profileURL)
     attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: model.profileURL.count))

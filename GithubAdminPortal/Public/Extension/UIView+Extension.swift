@@ -29,4 +29,11 @@ extension UIView {
   var safeBottomAnchor: NSLayoutYAxisAnchor {
     return self.safeAreaLayoutGuide.bottomAnchor
   }
+  
+  func addShadow() {
+    layer.shadowColor = UIColor.black.cgColor
+    layer.shadowOpacity = 0.2
+    layer.shadowOffset = CGSize(width: 0, height: 2)
+    layer.shadowRadius = 4
+  }
 }
