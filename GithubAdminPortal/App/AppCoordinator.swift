@@ -43,8 +43,17 @@ final class AppCoordinator: Coordinator {
   
   private func setupDependencies() {
     container.register(type: IAPIClient.self, service: APIClientImp(enviroment: .dev, urlSession: URLSession.shared))
+    container.register(type: DatabaseManager.self, service: DatabaseManager.shared)
+    
     if let apiClient = container.resolve(type: IAPIClient.self) {
-      container.register(type: IUserService.self, service: UserService(api: apiClient))
+      container.register(type: IUserAPI.self, service: UserAPI(api: apiClient))
+    }
+    if let databaseManager = container.resolve(type: DatabaseManager.self) {
+      container.register(type: IUserDataSource.self, service: UserDataSource(databaseManager: databaseManager))
+    }
+    if let userAPI = container.resolve(type: IUserAPI.self),
+       let userDataSource = container.resolve(type: IUserDataSource.self) {
+      container.register(type: IUserService.self, service: UserService(api: userAPI, dataSource: userDataSource))
     }
   }
   

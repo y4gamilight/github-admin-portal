@@ -23,18 +23,18 @@ class GithubUserListViewModel: BaseViewModel {
 
 extension GithubUserListViewModel: GithubUserListOutput {
   func fetchUsers() {
-    userService.getAll(since: nil) {[weak self] response, error in
-      guard let response = response else {
-        return
-      }
+    let response = userService.getLocalUsers()
+//    userService.fetchAll(since: nil, onCompletion: {[weak self] response in
       let items = response.map { element in
         let url = URL(string: element.avatarURL)
         return GithubUserItemCell(uid: "\(element.id)", userName: element.userName, profileURL: element.profileURL, imageURL: url)
       }
       DispatchQueue.main.async {
-        self?.input?.updateUsers(items)
+        self.input?.updateUsers(items)
       }
-    }
+//    }) { error in
+//      
+//    }
   }
 }
 
