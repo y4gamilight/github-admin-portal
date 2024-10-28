@@ -7,19 +7,22 @@
 
 import UIKit
 
-typealias GithubUserItemCell = GithubUserCell.Model
+typealias GithubUserCellItem = GithubUserCell.Model
 final class GithubUserCell: UITableViewCell {
   struct Model {
     let uid: String
     let userName: String
     let profileURL: String
-    let imageURL: URL?
+    let avatarURL: String?
+    var imageData: Data?
+    var onClickURL: ((String) -> ())?
     
-    init(uid: String, userName: String = "", profileURL: String, imageURL: URL? = nil) {
+    init(uid: String, userName: String = "", profileURL: String, avatarURL: String? = nil, onClickURL: ((String) -> Void)?) {
       self.uid = uid
       self.userName = userName
       self.profileURL = profileURL
-      self.imageURL = imageURL
+      self.avatarURL = avatarURL
+      self.onClickURL = onClickURL
     }
   }
 
@@ -34,8 +37,6 @@ final class GithubUserCell: UITableViewCell {
 
   private lazy var cardView: UserCardView = {
     let view = UserCardView(detailView: hyperlinkLabel).forAutolayout()
-    view.layer.cornerRadius = Constant.regularPadding
-    view.backgroundColor = .white
     return view
   }()
 
@@ -43,16 +44,22 @@ final class GithubUserCell: UITableViewCell {
     let label = UILabel().forAutolayout()
     label.isUserInteractionEnabled = true
     label.textColor = .blue
+    label.font = UIFont.systemFont(ofSize: 12)
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hyperlinkTapped))
     label.addGestureRecognizer(tapGesture)
     return label
   }()
 
   @objc private func hyperlinkTapped() {
-    // Handle hyperlink tap action
-    debugPrint("Hyperlink tapped")
+    guard let profileURL = model?.profileURL else { return }
+    model?.onClickURL?(profileURL)
   }
-
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+  }
+  
+  private (set) var model: GithubUserCellItem?
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -64,17 +71,25 @@ final class GithubUserCell: UITableViewCell {
   }
   
   private func setupView() {
+    backgroundColor = .clear
     selectionStyle = .none
     contentView.addSubview(cardView)
     cardView.addInnerConstraint([.top, .leading, .bottom, .trailing], constant: Constant.smallPadding)
+    setNeedsLayout()
+    layoutIfNeeded()
   }
   
   func configure(with model: Model) {
-    cardView.update(config: UserCardViewConfig( title: model.userName, url: model.imageURL))
+    self.model = model 
+    cardView.update(config: UserCardViewConfig( title: model.userName, url: nil))
     
     let attributedString = NSMutableAttributedString(string: model.profileURL)
     attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: model.profileURL.count))
     hyperlinkLabel.attributedText = attributedString
+  }
+  
+  func updateAvatarImage(_ image: UIImage?) {
+    cardView.updateAvatar(image)
   }
   
 }

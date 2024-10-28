@@ -8,14 +8,16 @@
 import UIKit
 
 protocol GithubUserDataSourceListener {
-  func onSelectedGithubUserCell(_ item: GithubUserItemCell)
+  func onSelectedGithubUserCell(_ item: GithubUserCellItem)
 }
 
 final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
   var listener: GithubUserDataSourceListener?
-  private var items: [GithubUserItemCell] = []
-
-  override init() {
+  private var items: [GithubUserCellItem] = []
+  
+  var lazyLoadManager: LazyLoadUserAvatarManager
+  init(lazyLoadManager: LazyLoadUserAvatarManager) {
+    self.lazyLoadManager = lazyLoadManager
     super.init()
   }
 
@@ -25,8 +27,12 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
     tableView.register(GithubUserCell.self, forCellReuseIdentifier: GithubUserCell.identifierCell)
   }
 
-  func updateItems(_ items: [GithubUserItemCell]) {
+  func updateItems(_ items: [GithubUserCellItem]) {
     self.items = items
+  }
+  
+  func stopLoadImages() {
+    lazyLoadManager.reset()
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,6 +43,18 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
     let cell = tableView.dequeueReusableCell(withIdentifier: GithubUserCell.identifierCell, for: indexPath) as! GithubUserCell
     let item = items[indexPath.row]
     cell.configure(with: item)
+    
+    lazyLoadManager.asyncDown(item: item, index: indexPath.row) {[weak self] (data, index) in
+      guard let this = self, let data = data else { return }
+      this.items[indexPath.row].imageData = data
+      DispatchQueue.main.async {
+        guard let __cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? GithubUserCell,
+              let __cellItem = __cell.model, __cellItem.uid == item.uid else {
+          return
+        }
+        __cell.updateAvatarImage(UIImage(data: data))
+      }
+    }
     return cell
   }
   
@@ -50,5 +68,10 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
       return
     }
     listener?.onSelectedGithubUserCell(items[indexPath.row])
+  }
+  
+  func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    if indexPath.row >= items.count { return }
+    self.lazyLoadManager.slowDownImageDownloadTaskfor(items[indexPath.row])
   }
 }

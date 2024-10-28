@@ -8,7 +8,9 @@ struct StatViewConfig {
 
 class StatView: UIView {
   enum Constant {
-    static let iconSize: CGFloat = 32
+    static let iconSize: CGFloat = 24
+    static let containerSize: CGFloat = 44
+    static let smallPadding: CGFloat = 8
   }
   private var config: StatViewConfig
   private lazy var stackView: UIStackView = {
@@ -16,8 +18,15 @@ class StatView: UIView {
     stackView.axis = .vertical
     stackView.distribution = .fill
     stackView.alignment = .center
-    backgroundColor = .white
+    stackView.spacing = Constant.smallPadding
     return stackView
+  }()
+  
+  private lazy var statContainer: UIView = {
+    let view = UIView().forAutolayout()
+    view.backgroundColor = Colors.secondaryBg
+    view.layer.cornerRadius = Constant.containerSize / 2
+    return view
   }()
 
   private lazy var statIcon: UIImageView = {
@@ -31,7 +40,7 @@ class StatView: UIView {
   private lazy var statLabel: UILabel = {
     let label = UILabel().forAutolayout()
     label.text = config.stat
-    label.font = .systemFont(ofSize: 14)
+    label.font = .systemFont(ofSize: 12)
     label.textColor = .black
     return label
   }()
@@ -39,7 +48,7 @@ class StatView: UIView {
   private lazy var unitLabel: UILabel = {
     let label = UILabel().forAutolayout()
     label.text = config.unit
-    label.font = .systemFont(ofSize: 14)
+    label.font = .systemFont(ofSize: 12)
     label.textColor = .black
     return label
   }()
@@ -56,11 +65,14 @@ class StatView: UIView {
 
   private func setupViews() {
     addSubview(stackView)
-    stackView.addArrangedSubview(statIcon)
+    stackView.addArrangedSubview(statContainer)
     stackView.addArrangedSubview(statLabel)
     stackView.addArrangedSubview(unitLabel)
     stackView.addInnerConstraint([.top, .bottom, .leading, .trailing], constant: 0)
+    statContainer.addInnerConstraint([.width, .height], constant: Constant.containerSize)
+    statContainer.addSubview(statIcon)
     statIcon.addInnerConstraint([.width, .height], constant: Constant.iconSize)
+    statIcon.addInnerConstraint([.centerX, .centerY], constant: 0)
   }
 
   func update(config: StatViewConfig) {

@@ -42,4 +42,11 @@ class GithubUserCoordinator: Coordinator {
     viewModel.input = vc
     rootViewController?.navigationController?.pushViewController(vc, animated: true)
   }
+  
+  func presentWebView(_ url: URL) {
+    let webViewModel = WebViewModel(coordinator: self, url: url)
+    let vc = WebVC(viewModel: webViewModel)
+    webViewModel.input = vc
+    rootViewController?.navigationController?.present(vc, animated: true)
+  }
 }

@@ -8,20 +8,22 @@
 import UIKit
 
 protocol GithubUserListInput: AnyObject {
-  func updateUsers(_ items: [GithubUserItemCell])
+  func updateUsers(_ items: [GithubUserCellItem])
 }
 
 final class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
   private lazy var usersTableView: UITableView = {
     let tableView = UITableView().forAutolayout()
+    tableView.separatorStyle = .none
+    tableView.backgroundColor = .clear
     return tableView
   }()
   
-  private let dataSource = GithubUserDataSource()
+  private let dataSource = GithubUserDataSource(lazyLoadManager: LazyLoadUserAvatarManager())
   
   override func setup() {
     navigationItem.title = "Github Users"
-    view.backgroundColor = .blue
+    view.backgroundColor = .clear
     view.addSubview(usersTableView)
     usersTableView.addInnerConstraint([.top, .bottom, .leading, .trailing], constant: 0)
   }
@@ -35,7 +37,7 @@ final class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
 }
 
 extension GithubUserListVC: GithubUserListInput {
-  func updateUsers(_ items: [GithubUserItemCell]) {
+  func updateUsers(_ items: [GithubUserCellItem]) {
     dataSource.updateItems(items)
     usersTableView.reloadData()
   }

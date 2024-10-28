@@ -11,18 +11,21 @@ protocol GithubUserDetailsInput: AnyObject {
 }
 
 final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> {
+  enum Constants {
+    static let regularPadding: CGFloat = 16
+    static let xxSmallPadding: CGFloat = 4
+  }
+  
   private lazy var stackView: UIStackView = {
     let stackView = UIStackView().forAutolayout()
     stackView.axis = .vertical
     stackView.alignment = .center
-    stackView.spacing = 24
+    stackView.spacing = Constants.regularPadding
     return stackView
   }()
 
   private lazy var userCardView: UserCardView = {
     let view = UserCardView(detailView: locationContainer).forAutolayout()
-    view.layer.cornerRadius = 16
-    view.backgroundColor = .white
     return view
   }()
 
@@ -33,6 +36,7 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> 
 
   private lazy var locationLogo: UIImageView = {
     let imageView = UIImageView().forAutolayout()
+    imageView.image = Images.image(.icLocation)
     return imageView
   }()
 
@@ -69,37 +73,47 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> 
   private lazy var bioHeader: UILabel = {
     let label = UILabel().forAutolayout()
     label.text = "Blog"
+    label.textColor = Colors.primaryContent
+    label.font = UIFont.boldSystemFont(ofSize: 18)
     return label
   }()
   
   private lazy var bioTextView: UITextView = {
     let textView = UITextView().forAutolayout()
+    textView.backgroundColor = Colors.primaryBg
     textView.isEditable = false
+    textView.textColor = Colors.primaryContent
+    textView.font = UIFont.systemFont(ofSize: 14)
     return textView
   }()
 
   override func setup() { 
     navigationItem.title = "User Details" 
+    navigationController?.navigationBar.hideBackTitle()
+    view.backgroundColor = Colors.primaryBg
+    
     view.addSubview(stackView)
     stackView.addInnerConstraint([.top, .leading, .trailing, .bottom], constant: 0)
 
     locationContainer.addSubview(locationLogo)
     locationContainer.addSubview(locationLabel)
     locationLogo.addInnerConstraint([.leading], constant: 0)
-    locationLogo.addInnerConstraint([.width, .height], constant: 16)
+    locationLogo.addInnerConstraint([.width, .height], constant: Constants.regularPadding)
+    locationLogo.addInnerConstraint(.top, constant: Constants.xxSmallPadding)
     locationLabel.addInnerConstraint([.trailing, .top, .bottom], constant: 0)
-    locationLabel.relateTo(locationLogo, relative: .right, constant: 4)
-    locationLogo.relateTo(locationLabel, relative: .alignCenterY, constant: 0)
+    locationLabel.relateTo(locationLogo, relative: .right, constant: Constants.xxSmallPadding)
+    locationLogo.relateTo(locationLabel, relative: .alignTop, constant: 0)
 
     stackView.addArrangedSubview(userCardView)
-    userCardView.addInnerConstraint([.leading, .trailing], constant: 0)
+    userCardView.addInnerConstraint([.leading, .trailing], constant: Constants.regularPadding)
     userStatsContainer.addArrangedSubview(followerStatView)
     userStatsContainer.addArrangedSubview(followingStatView)
 
     stackView.addArrangedSubview(userStatsContainer)
     stackView.addArrangedSubview(userBioContainer)
     stackView.addArrangedSubview(bioHeader)
-    bioHeader.addInnerConstraint([.leading, .trailing], constant: 0)
+    userBioContainer.addInnerConstraint([.leading, .trailing], constant: Constants.regularPadding)
+    bioHeader.addInnerConstraint([.leading, .trailing], constant: Constants.regularPadding)
     stackView.addArrangedSubview(bioTextView)
     bioTextView.addInnerConstraint([.leading, .trailing, .bottom], constant: 0)
     
@@ -115,9 +129,10 @@ extension GithubUserDetailsVC: GithubUserDetailsInput {
   func updateUserDetails(user: GithubUserDetails) {
     locationLabel.text = user.location
     userCardView.update(config: UserCardViewConfig(title: user.userName, url: user.avatarURL))
-    followerStatView.update(config: StatViewConfig(stat: "\(user.followers)", unit: "followers", iconName: nil))
-    followingStatView.update(config: StatViewConfig(stat: "\(user.followings)", unit: "followings", iconName: nil))
+    userCardView
+    followerStatView.update(config: StatViewConfig(stat: "\(user.followers)", unit: "Followers", iconName: nil))
+    followingStatView.update(config: StatViewConfig(stat: "\(user.followings)", unit: "Followings", iconName: nil))
     
-    bioTextView.text = "aetet"
+    bioTextView.text = user.blog
   }
 }

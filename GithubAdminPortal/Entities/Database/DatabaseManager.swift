@@ -10,6 +10,10 @@ import CoreData
 
 final class DatabaseManager {
   static let shared = DatabaseManager()
+    
+  var context: NSManagedObjectContext {
+    persistentContainer.viewContext
+  }
   
   private lazy var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: "GithubAdminPortal")
@@ -21,13 +25,19 @@ final class DatabaseManager {
     return container
   }()
   
-  func saveContext() {
-    guard persistentContainer.viewContext.hasChanges else { return }
-    do {
-      try persistentContainer.viewContext.save()
-    } catch (let error) {
-      let nserror = error as NSError
-      fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+  func saveContext(_ completion: @escaping (Bool) -> Void) {
+    guard context.hasChanges else {
+      completion(true)
+      return
+    }
+    context.performAndWait {[weak self] in
+      do {
+        try self?.context.save()
+        completion(true)
+      } catch {
+        assertionFailure("Failed to save context: \(error)")
+        completion(false)
+      }
     }
   }
 }

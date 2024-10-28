@@ -8,6 +8,8 @@
 import Foundation
 
 protocol IUserService {
-  func getAll(since: Int?, completion: (([GithubUser]?, APIError?) -> Void)?)
-  func getUserByUserName(_ userName: String, completion: ((GithubUserDetails?, APIError?) -> Void)?)
+  func getLocalUsers() -> [GithubUser]
+  func getLocalUserByUserName(_ userName: String) -> GithubUserDetails?
+  func fetchAll(since: Int?, onCompletion: (([GithubUser]) -> Void)?, onFailure: ((APIError) -> Void)?)
+  func fetchUserByUserName(_ userName: String, onCompletion: ((GithubUserDetails) -> Void)?, onFailure:((APIError) -> Void)?)
 }

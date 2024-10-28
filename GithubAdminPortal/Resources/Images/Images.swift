@@ -14,6 +14,7 @@ struct Images {
     case icFollowers = "ic_followers"
     case icLocation = "ic_location"
     case icFollowings = "ic_archivement"
+    case icClose = "ic_close"
   }
   
   static func image(_ image: Name) -> UIImage? {

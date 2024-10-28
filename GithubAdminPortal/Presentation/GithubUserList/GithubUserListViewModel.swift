@@ -23,23 +23,27 @@ class GithubUserListViewModel: BaseViewModel {
 
 extension GithubUserListViewModel: GithubUserListOutput {
   func fetchUsers() {
-    userService.getAll(since: nil) {[weak self] response, error in
-      guard let response = response else {
-        return
-      }
-      let items = response.map { element in
-        let url = URL(string: element.avatarURL)
-        return GithubUserItemCell(uid: "\(element.id)", userName: element.userName, profileURL: element.profileURL, imageURL: url)
-      }
+    let response = userService.getLocalUsers()
+//    userService.fetchAll(since: nil, onCompletion: {[weak self] response in
+      let items = response.map { map($0) }
       DispatchQueue.main.async {
-        self?.input?.updateUsers(items)
+        self.input?.updateUsers(items)
       }
+//    }) { error in
+//      
+//    }
+  }
+  
+  private func map(_ element: GithubUser) -> GithubUserCellItem {
+    return GithubUserCellItem(uid: "\(element.id)", userName: element.userName, profileURL: element.profileURL, avatarURL: element.avatarURL) {[weak self] profileURL in
+      guard let this = self, let url = URL(string: profileURL) else { return }
+      this.coordinator.presentWebView(url)
     }
   }
 }
 
 extension GithubUserListViewModel: GithubUserDataSourceListener {
-  func onSelectedGithubUserCell(_ item: GithubUserItemCell) {
+  func onSelectedGithubUserCell(_ item: GithubUserCellItem) {
     coordinator.navigateToUser(item.userName)
   }
 }
