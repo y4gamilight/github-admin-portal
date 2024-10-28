@@ -50,7 +50,13 @@ final class APIClientImp: IAPIClient {
   private func request(_ urlRequest: URLRequest,
                        failure: @escaping (APIError) -> Void,
                        completion: @escaping (Data?) -> Void) {
+    
     let sessionTask = urlSession.dataTask(with: urlRequest) {[unowned self] data, response, error in
+      debugPrint("Thanhlt ===============================")
+      debugPrint("Thanhlt log request url \(urlRequest)")
+      debugPrint("Thanhlt log response  \(response)")
+      debugPrint("Thanhlt log data response \(data != nil ? String(data: data!, encoding: .utf8) : "=> No data <=")")
+      debugPrint("Thanhlt ===============================")
       guard let response = response as? HTTPURLResponse else {
         failure(APIError.unknown(APIErrorCode.noHTTPResponse))
         return

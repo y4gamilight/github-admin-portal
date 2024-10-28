@@ -9,6 +9,7 @@ import UIKit
 
 protocol GithubUserDataSourceListener {
   func onSelectedGithubUserCell(_ item: GithubUserCellItem)
+  func onLoadMoreGithubUsers()
 }
 
 final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
@@ -16,6 +17,7 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
   private var items: [GithubUserCellItem] = []
   
   var lazyLoadManager: LazyLoadUserAvatarManager
+  private var canLoadMore: Bool = true
   init(lazyLoadManager: LazyLoadUserAvatarManager) {
     self.lazyLoadManager = lazyLoadManager
     super.init()
@@ -25,21 +27,38 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(GithubUserCell.self, forCellReuseIdentifier: GithubUserCell.identifierCell)
+    tableView.register(LoadMoreViewCell.self, forCellReuseIdentifier: LoadMoreViewCell.identifierCell)
   }
 
   func updateItems(_ items: [GithubUserCellItem]) {
     self.items = items
+    canLoadMore = true
+  }
+  
+  func appendItems(_ items: [GithubUserCellItem]) {
+    self.items.append(contentsOf: items)
+    canLoadMore = true
   }
   
   func stopLoadImages() {
     lazyLoadManager.reset()
   }
+  
+  func stopLoadMore(_ tableView: UITableView) {
+    tableView.deleteRows(at: [IndexPath(row: items.count + 1, section: 0)], with: .fade)
+    canLoadMore = false
+  }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return items.count
+    return items.count + (canLoadMore ? 1 : 0)
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if canLoadMore && indexPath.row == items.count {
+      let cell = tableView.dequeueReusableCell(withIdentifier: LoadMoreViewCell.identifierCell) as! LoadMoreViewCell
+      cell.startAnimation()
+      return cell
+    }
     let cell = tableView.dequeueReusableCell(withIdentifier: GithubUserCell.identifierCell, for: indexPath) as! GithubUserCell
     let item = items[indexPath.row]
     cell.configure(with: item)
@@ -74,4 +93,16 @@ final class GithubUserDataSource: NSObject, UITableViewDelegate, UITableViewData
     if indexPath.row >= items.count { return }
     self.lazyLoadManager.slowDownImageDownloadTaskfor(items[indexPath.row])
   }
+
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let offsetY = scrollView.contentOffset.y
+    let contentHeight = scrollView.contentSize.height
+    let height = scrollView.frame.height
+    
+    if canLoadMore && contentHeight <= offsetY + height {
+      canLoadMore = false
+      listener?.onLoadMoreGithubUsers()
+    }
+  }
+  
 }

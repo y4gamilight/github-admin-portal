@@ -18,7 +18,7 @@ struct GetUserListRequest: GPARequest {
   var params: [String : Any]? = nil
   var queries: [String : Any]?
 
-  init(since: Int?, perPage: Int = 20) {
+  init(since: Int?, perPage: Int) {
      self.queries = [ Key.perPage.rawValue: perPage]
      if let since = since {
        self.queries?[Key.since.rawValue] = since
