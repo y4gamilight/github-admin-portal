@@ -48,41 +48,75 @@ class UserDataSource: IUserDataSource {
     return nil
   }
   
+  func deleteAndSave(_ models: [GithubUserResponseData], completion: @escaping (Bool) -> Void) {
+    bgContext.performAndWait {[weak self] in
+      guard let this = self else {
+        completion(false)
+        return
+      }
+      this.performDelete(entities: models.map { $0.login}, completion: {[weak self] isComplete in
+        guard let this = self else {
+          completion(false)
+          return
+        }
+        this.performSave(models, completion: completion)
+      })
+    }
+  }
+  
+  func performDelete(entities: [String], completion: @escaping (Bool) -> Void) {
+    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "GithubUserEntity")
+     fetchRequest.predicate = NSPredicate(format: "login IN %@", entities)
+    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+    do {
+      try bgContext.execute(batchDeleteRequest)
+      bgContext.reset()
+      completion(true)
+    } catch {
+      completion(false)
+      assertionFailure("Delete github users failure")
+    }
+  }
+  
+  func performSave(_ models: [GithubUserResponseData], completion: @escaping (Bool) -> Void) {
+    for model in models {
+      let entity = GithubUserEntity(context: bgContext)
+      entity.id = Int32(model.id)
+      entity.login = model.login
+      entity.name = model.name
+      entity.avatarURL = model.avatarUrl
+      entity.htmlURL = model.htmlUrl
+      entity.location = model.location
+      entity.followers = Int32(model.followers ?? 0)
+      entity.following = Int32(model.following ?? 0)
+      entity.bio = model.bio
+      entity.blog = model.blog
+      entity.company = model.company
+      entity.createdAt = model.createdAt
+      entity.updatedAt = model.updatedAt
+      entity.email = model.email
+      entity.url = model.url
+      entity.reposUrl = model.reposUrl
+      entity.gistsURL = model.gistsUrl
+    }
+    do {
+      try bgContext.save()
+      databaseManager.saveContext { isComplete in
+        completion(isComplete)
+      }
+    } catch {
+      assertionFailure("Failed to save background context: \(error)")
+      completion(false)
+    }
+  }
+  
   func save(_ models: [GithubUserResponseData], completion: @escaping (Bool) -> Void) {
     bgContext.performAndWait {[weak self] in
       guard let this = self else {
         completion(false)
         return
       }
-      for model in models {
-        let entity = GithubUserEntity(context: this.bgContext)
-        entity.id = Int32(model.id)
-        entity.login = model.login
-        entity.name = model.name
-        entity.avatarURL = model.avatarUrl
-        entity.htmlURL = model.htmlUrl
-        entity.location = model.location
-        entity.followers = Int32(model.followers ?? 0)
-        entity.following = Int32(model.following ?? 0)
-        entity.bio = model.bio
-        entity.blog = model.blog
-        entity.company = model.company
-        entity.createdAt = model.createdAt
-        entity.updatedAt = model.updatedAt
-        entity.email = model.email
-        entity.url = model.url
-        entity.reposUrl = model.reposUrl
-        entity.gistsURL = model.gistsUrl
-      }
-      do {
-        try this.bgContext.save()
-        this.databaseManager.saveContext { isComplete in
-          completion(isComplete)
-        }
-      } catch {
-        assertionFailure("Failed to save background context: \(error)")
-        completion(false)
-      }
+      this.performSave(models, completion: completion)
     }
   }
   

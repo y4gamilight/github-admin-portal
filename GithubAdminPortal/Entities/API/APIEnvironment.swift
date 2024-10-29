@@ -21,6 +21,7 @@ enum APIEnvironment {
       "Content-Type": "application/json;charset=utf-8",
       "Accept": "application/vnd.github+json",
       "X-Github-Api-Version": "2022-11-28",
+      "Authorization": "<YOUR_TOKEN>"
     ]
   }
 }

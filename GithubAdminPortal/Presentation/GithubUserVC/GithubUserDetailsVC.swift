@@ -99,10 +99,10 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel>,
     locationContainer.addSubview(locationLabel)
     locationLogo.addInnerConstraint([.leading], constant: 0)
     locationLogo.addInnerConstraint([.width, .height], constant: Constants.regularPadding)
-    locationLogo.addInnerConstraint(.top, constant: Constants.xxSmallPadding)
+    locationLogo.addInnerConstraint(.top, constant: 0)
     locationLabel.addInnerConstraint([.trailing, .top, .bottom], constant: 0)
     locationLabel.relateTo(locationLogo, relative: .right, constant: Constants.xxSmallPadding)
-    locationLogo.relateTo(locationLabel, relative: .alignTop, constant: 0)
+    locationLabel.addInnerConstraint(.top, constant: Constants.xxSmallPadding)
 
     stackView.addArrangedSubview(userCardView)
     userCardView.addInnerConstraint([.leading, .trailing], constant: Constants.regularPadding)

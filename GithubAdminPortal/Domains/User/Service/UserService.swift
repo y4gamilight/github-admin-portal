@@ -37,7 +37,9 @@ final class UserService: IUserService {
   
   func fetchUserByUserName(_ userName: String, onCompletion: ((GithubUserDetails) -> Void)?, onFailure:((APIError) -> Void)?) {
     let paramRequest = GetUserDetailRequest(username: userName)
-    api.getUser(paramRequest, onCompletion: { response in
+    api.getUser(paramRequest, onCompletion: {[weak self] response in
+      guard let this = self else { return }
+      this.saveUserDetailsToLocal(response)
       let userDetails = GithubUserDetails(userName: response.login, avatarURL: response.avatarUrl, profileURL: response.htmlUrl, location: response.location ?? "", followers: response.followers ?? 0, followings: response.following ?? 0, blog: response.blog ?? "")
       onCompletion?(userDetails)
     }, onFailure: { error in
@@ -50,6 +52,15 @@ final class UserService: IUserService {
     DispatchQueue.global(qos: .background).async {
       dataSource.save(models) { isComplete in
         debugPrint("Thanhlt stored \(isComplete)")
+      }
+    }
+  }
+  
+  func saveUserDetailsToLocal(_ model: GithubUserResponseData) {
+    let dataSource = dataSource
+    DispatchQueue.global(qos: .background).async {
+      dataSource.deleteAndSave([model]) { isComplete in
+        debugPrint("Thanhlt override data \(isComplete)")
       }
     }
   }

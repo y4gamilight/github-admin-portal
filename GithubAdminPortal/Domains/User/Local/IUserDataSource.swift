@@ -9,4 +9,5 @@ protocol IUserDataSource {
   func getAll() -> [GithubUser]
   func getBelongTo(name userName: String) -> GithubUserDetails?
   func save(_ models: [GithubUserResponseData], completion: @escaping (Bool) -> Void)
+  func deleteAndSave(_ models: [GithubUserResponseData], completion: @escaping (Bool) -> Void)
 }
