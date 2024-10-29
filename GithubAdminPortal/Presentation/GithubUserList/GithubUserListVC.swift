@@ -19,6 +19,9 @@ final class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
     let tableView = UITableView().forAutolayout()
     tableView.separatorStyle = .none
     tableView.backgroundColor = .clear
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+    tableView.refreshControl = refreshControl
     return tableView
   }()
   
@@ -37,12 +40,17 @@ final class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
     
     viewModel.loadDataInLoadedView()
   }
+  
+  @objc func pullToRefresh() {
+    viewModel.refreshList()
+  }
 }
 
 extension GithubUserListVC: GithubUserListInput {
   func updateUsers(_ items: [GithubUserCellItem]) {
     dataSource.updateItems(items)
     usersTableView.reloadData()
+    usersTableView.refreshControl?.endRefreshing()
   }
   
   func appendUsers(_ items: [GithubUserCellItem]) {
