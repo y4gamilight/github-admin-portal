@@ -35,10 +35,4 @@ class BaseViewController<ViewModel: BaseViewModel>: UIViewController {
       alertVC.addAction(UIAlertAction(title:  "Cancel", style: .cancel))
       self.present(alertVC, animated: true)
   }
-  
-  func showLoading() {
-  }
-  
-  func hideLoading() {
-  }
 }

@@ -64,6 +64,8 @@
 		4BB04D7A2CD08C43009A7A54 /* MockGithubUserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D762CD08C42009A7A54 /* MockGithubUserListViewModel.swift */; };
 		4BB04D7D2CD08C4D009A7A54 /* UserAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D7C2CD08C4D009A7A54 /* UserAPITests.swift */; };
 		4BB04D812CD09015009A7A54 /* GithubUserListVideModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D802CD09015009A7A54 /* GithubUserListVideModelTests.swift */; };
+		4BB04D832CD09590009A7A54 /* HudLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D822CD09590009A7A54 /* HudLoadingView.swift */; };
+		4BB04D852CD099D9009A7A54 /* ViewLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D842CD099D9009A7A54 /* ViewLoadable.swift */; };
 		4BB725162CCC8F640087997E /* GithubUserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB725142CCC8F640087997E /* GithubUserDetailsViewModel.swift */; };
 		4BB725172CCC8F640087997E /* GithubUserDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB725152CCC8F640087997E /* GithubUserDetailsVC.swift */; };
 		4BB725192CCC8FD00087997E /* GithubUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB725182CCC8FD00087997E /* GithubUserDetails.swift */; };
@@ -156,6 +158,8 @@
 		4BB04D762CD08C42009A7A54 /* MockGithubUserListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGithubUserListViewModel.swift; sourceTree = "<group>"; };
 		4BB04D7C2CD08C4D009A7A54 /* UserAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPITests.swift; sourceTree = "<group>"; };
 		4BB04D802CD09015009A7A54 /* GithubUserListVideModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserListVideModelTests.swift; sourceTree = "<group>"; };
+		4BB04D822CD09590009A7A54 /* HudLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudLoadingView.swift; sourceTree = "<group>"; };
+		4BB04D842CD099D9009A7A54 /* ViewLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLoadable.swift; sourceTree = "<group>"; };
 		4BB725142CCC8F640087997E /* GithubUserDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserDetailsViewModel.swift; sourceTree = "<group>"; };
 		4BB725152CCC8F640087997E /* GithubUserDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserDetailsVC.swift; sourceTree = "<group>"; };
 		4BB725182CCC8FD00087997E /* GithubUserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserDetails.swift; sourceTree = "<group>"; };
@@ -586,6 +590,8 @@
 		4BB725212CCCA2FA0087997E /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				4BB04D842CD099D9009A7A54 /* ViewLoadable.swift */,
+				4BB04D822CD09590009A7A54 /* HudLoadingView.swift */,
 				4B24DDCF2CCDB634001C343F /* StatView.swift */,
 				4BB725242CCCA31F0087997E /* UserCardView.swift */,
 			);
@@ -780,6 +786,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B24DDD02CCDB634001C343F /* StatView.swift in Sources */,
+				4BB04D832CD09590009A7A54 /* HudLoadingView.swift in Sources */,
 				4B5F41872CC965ED00FC2E17 /* GetUserListRequest.swift in Sources */,
 				4B293EED2CD017010052BDA5 /* UIImageView+Extension.swift in Sources */,
 				4BB725252CCCA31F0087997E /* UserCardView.swift in Sources */,
@@ -816,6 +823,7 @@
 				4B6277F22CC864AF00C7FEA9 /* GPAHTTPMethod.swift in Sources */,
 				4B1796DB2CCF839200F850D3 /* IUserDataSource.swift in Sources */,
 				4B31A4602CCA7F9F00BCC588 /* DIContainer.swift in Sources */,
+				4BB04D852CD099D9009A7A54 /* ViewLoadable.swift in Sources */,
 				4BB7251B2CCC980C0087997E /* GithubUserCoodinator.swift in Sources */,
 				4B293EEB2CCFF31C0052BDA5 /* WebViewModel.swift in Sources */,
 				4B293EF12CD027940052BDA5 /* LoadMoreViewCell.swift in Sources */,

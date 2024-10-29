@@ -15,4 +15,6 @@ struct Colors {
   static let tertiaryBg = UIColor(named: "tertiaryBg")!
   
   static let placeholderAvatarBg = Colors.tertiaryBg
+  static let dialogContainerBG = Colors.secondaryBg
+  static let hudBackgroundView = Colors.secondaryContent
 }

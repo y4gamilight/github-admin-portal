@@ -10,7 +10,7 @@ protocol GithubUserDetailsInput: AnyObject {
   func updateUserDetails(user: GithubUserDetails)
 }
 
-final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> {
+final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel>, ViewLoadable {
   enum Constants {
     static let regularPadding: CGFloat = 16
     static let xxSmallPadding: CGFloat = 4
@@ -115,7 +115,8 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel> 
     userBioContainer.addInnerConstraint([.leading, .trailing], constant: Constants.regularPadding)
     bioHeader.addInnerConstraint([.leading, .trailing], constant: Constants.regularPadding)
     stackView.addArrangedSubview(bioTextView)
-    bioTextView.addInnerConstraint([.leading, .trailing, .bottom], constant: 0)
+    bioTextView.addInnerConstraint([.leading, .trailing, .bottom], constant: Constants.regularPadding)
+    bioTextView.addInnerConstraint(.bottom, constant: 0)
     
     userStatsContainer.spacing = view.frame.size.width / 5
   }
@@ -129,7 +130,6 @@ extension GithubUserDetailsVC: GithubUserDetailsInput {
   func updateUserDetails(user: GithubUserDetails) {
     locationLabel.text = user.location
     userCardView.update(config: UserCardViewConfig(title: user.userName, url: user.avatarURL))
-    userCardView
     followerStatView.update(config: StatViewConfig(stat: "\(user.followers)", unit: "Followers", iconName: nil))
     followingStatView.update(config: StatViewConfig(stat: "\(user.followings)", unit: "Followings", iconName: nil))
     
