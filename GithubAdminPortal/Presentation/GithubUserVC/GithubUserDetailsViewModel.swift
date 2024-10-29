@@ -12,7 +12,7 @@ protocol GithubUserDetailsOutput {
 
 class GithubUserDetailsViewModel: BaseViewModel {
   var coordinator: GithubUserCoordinator
-  weak var input: (GithubUserDetailsInput & ViewLoadable)?
+  weak var input: (GithubUserDetailsInput & ViewLoadable & ErrorAlertPresentable)?
   
   private let userName: String
   private let userService: IUserService
@@ -26,7 +26,9 @@ class GithubUserDetailsViewModel: BaseViewModel {
 
 extension GithubUserDetailsViewModel: GithubUserDetailsOutput {
   func fetchUserDetails() {
+    var hasCaching = false
     if let userDetails = userService.getLocalUserByUserName(userName) {
+      hasCaching = true
       DispatchQueue.main.async {
         self.input?.updateUserDetails(user: userDetails)
       }
@@ -40,6 +42,9 @@ extension GithubUserDetailsViewModel: GithubUserDetailsOutput {
     }, onFailure: {[weak self] error in
       DispatchQueue.main.async {
         self?.input?.hideLoading()
+        if !hasCaching {
+          self?.input?.showErorMessage(error.description)
+        }
       }
     })
   }

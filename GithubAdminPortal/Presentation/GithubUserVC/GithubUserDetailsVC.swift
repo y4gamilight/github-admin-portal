@@ -42,7 +42,7 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel>,
 
   private lazy var locationLabel: UILabel = {
     let label = UILabel().forAutolayout()
-    label.font = UIFont.systemFont(ofSize: 14)
+    label.font = Fonts.title
     label.textColor = .black
     return label
   }()
@@ -56,12 +56,12 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel>,
   }()
 
   private lazy var followerStatView: StatView = {
-    let view = StatView(config: .init(stat: "0", unit: "follower", iconName: Images.Name.icFollowers.rawValue)).forAutolayout()
+    let view = StatView(config: .init(stat: "0", unit: Localizationer.textFollower, iconName: Images.Name.icFollowers.rawValue)).forAutolayout()
     return view
   }()
 
   private lazy var followingStatView: StatView = {
-    let view = StatView(config: .init(stat: "0", unit: "following", iconName: Images.Name.icFollowings.rawValue)).forAutolayout()
+    let view = StatView(config: .init(stat: "0", unit: Localizationer.textFollowing, iconName: Images.Name.icFollowings.rawValue)).forAutolayout()
     return view
   }()
 
@@ -72,9 +72,9 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel>,
   
   private lazy var bioHeader: UILabel = {
     let label = UILabel().forAutolayout()
-    label.text = "Blog"
+    label.text = Localizationer.textBlog
     label.textColor = Colors.primaryContent
-    label.font = UIFont.boldSystemFont(ofSize: 18)
+    label.font = Fonts.heading3
     return label
   }()
   
@@ -83,12 +83,12 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel>,
     textView.backgroundColor = Colors.primaryBg
     textView.isEditable = false
     textView.textColor = Colors.primaryContent
-    textView.font = UIFont.systemFont(ofSize: 14)
+    textView.font = Fonts.title
     return textView
   }()
 
   override func setup() { 
-    navigationItem.title = "User Details" 
+    navigationItem.title = Localizationer.headingUserDetail
     navigationController?.navigationBar.hideBackTitle()
     view.backgroundColor = Colors.primaryBg
     
@@ -130,9 +130,11 @@ extension GithubUserDetailsVC: GithubUserDetailsInput {
   func updateUserDetails(user: GithubUserDetails) {
     locationLabel.text = user.location
     userCardView.update(config: UserCardViewConfig(title: user.userName, url: user.avatarURL))
-    followerStatView.update(config: StatViewConfig(stat: "\(user.followers)", unit: "Followers", iconName: nil))
-    followingStatView.update(config: StatViewConfig(stat: "\(user.followings)", unit: "Followings", iconName: nil))
+    followerStatView.update(config: StatViewConfig(stat: "\(user.followers)", unit: Localizationer.textFollower, iconName: nil))
+    followingStatView.update(config: StatViewConfig(stat: "\(user.followings)", unit: Localizationer.textFollowing, iconName: nil))
     
     bioTextView.text = user.blog
   }
 }
+
+extension GithubUserDetailsVC: ErrorAlertPresentable {}

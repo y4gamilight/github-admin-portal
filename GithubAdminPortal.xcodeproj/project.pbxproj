@@ -66,6 +66,10 @@
 		4BB04D812CD09015009A7A54 /* GithubUserListVideModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D802CD09015009A7A54 /* GithubUserListVideModelTests.swift */; };
 		4BB04D832CD09590009A7A54 /* HudLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D822CD09590009A7A54 /* HudLoadingView.swift */; };
 		4BB04D852CD099D9009A7A54 /* ViewLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D842CD099D9009A7A54 /* ViewLoadable.swift */; };
+		4BB04D892CD0A0CB009A7A54 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D882CD0A0CB009A7A54 /* Fonts.swift */; };
+		4BB04D8C2CD0A158009A7A54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BB04D8E2CD0A158009A7A54 /* Localizable.strings */; };
+		4BB04D902CD0A176009A7A54 /* Localizationer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D8F2CD0A176009A7A54 /* Localizationer.swift */; };
+		4BB04D922CD0A305009A7A54 /* ErrorAlertPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB04D912CD0A305009A7A54 /* ErrorAlertPresentable.swift */; };
 		4BB725162CCC8F640087997E /* GithubUserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB725142CCC8F640087997E /* GithubUserDetailsViewModel.swift */; };
 		4BB725172CCC8F640087997E /* GithubUserDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB725152CCC8F640087997E /* GithubUserDetailsVC.swift */; };
 		4BB725192CCC8FD00087997E /* GithubUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB725182CCC8FD00087997E /* GithubUserDetails.swift */; };
@@ -160,6 +164,10 @@
 		4BB04D802CD09015009A7A54 /* GithubUserListVideModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserListVideModelTests.swift; sourceTree = "<group>"; };
 		4BB04D822CD09590009A7A54 /* HudLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudLoadingView.swift; sourceTree = "<group>"; };
 		4BB04D842CD099D9009A7A54 /* ViewLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLoadable.swift; sourceTree = "<group>"; };
+		4BB04D882CD0A0CB009A7A54 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		4BB04D8D2CD0A158009A7A54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4BB04D8F2CD0A176009A7A54 /* Localizationer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizationer.swift; sourceTree = "<group>"; };
+		4BB04D912CD0A305009A7A54 /* ErrorAlertPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertPresentable.swift; sourceTree = "<group>"; };
 		4BB725142CCC8F640087997E /* GithubUserDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserDetailsViewModel.swift; sourceTree = "<group>"; };
 		4BB725152CCC8F640087997E /* GithubUserDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserDetailsVC.swift; sourceTree = "<group>"; };
 		4BB725182CCC8FD00087997E /* GithubUserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserDetails.swift; sourceTree = "<group>"; };
@@ -473,6 +481,8 @@
 		4BAA24722CC810A20044D294 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4BB04D872CD0A0C1009A7A54 /* Localization */,
+				4BB04D862CD0A0BB009A7A54 /* Fonts */,
 				4B1796C42CCF6A4100F850D3 /* Colors */,
 				4B26BA792CCDE4FC0061A33D /* Images */,
 				4BCE5A722CC7B03400EA4865 /* Main.storyboard */,
@@ -578,6 +588,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		4BB04D862CD0A0BB009A7A54 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4BB04D882CD0A0CB009A7A54 /* Fonts.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		4BB04D872CD0A0C1009A7A54 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				4BB04D8E2CD0A158009A7A54 /* Localizable.strings */,
+				4BB04D8F2CD0A176009A7A54 /* Localizationer.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		4BB725132CCC8F640087997E /* GithubUserVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +621,7 @@
 				4BB04D822CD09590009A7A54 /* HudLoadingView.swift */,
 				4B24DDCF2CCDB634001C343F /* StatView.swift */,
 				4BB725242CCCA31F0087997E /* UserCardView.swift */,
+				4BB04D912CD0A305009A7A54 /* ErrorAlertPresentable.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -754,6 +782,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BB04D8C2CD0A158009A7A54 /* Localizable.strings in Resources */,
 				4BCE5A7C2CC7B03600EA4865 /* LaunchScreen.storyboard in Resources */,
 				4B1796CF2CCF6AE100F850D3 /* Colors.xcassets in Resources */,
 				4B26BA7C2CCDE4FC0061A33D /* Assets.xcassets in Resources */,
@@ -785,6 +814,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BB04D892CD0A0CB009A7A54 /* Fonts.swift in Sources */,
 				4B24DDD02CCDB634001C343F /* StatView.swift in Sources */,
 				4BB04D832CD09590009A7A54 /* HudLoadingView.swift in Sources */,
 				4B5F41872CC965ED00FC2E17 /* GetUserListRequest.swift in Sources */,
@@ -805,12 +835,14 @@
 				4B293EDD2CCFE3450052BDA5 /* LazyLoadUserAvatarManager.swift in Sources */,
 				4B293EDB2CCFE19E0052BDA5 /* UINavigationBar+Extension.swift in Sources */,
 				4BA26C682CCB7BEA00ED1929 /* GithubUserCell.swift in Sources */,
+				4BB04D922CD0A305009A7A54 /* ErrorAlertPresentable.swift in Sources */,
 				4B2210EF2CCFA50900C98EC1 /* IUserAPI.swift in Sources */,
 				4BACF69F2CCC60A400315744 /* BaseViewModel.swift in Sources */,
 				4BCE5A712CC7B03400EA4865 /* RootNavController.swift in Sources */,
 				4BAA24792CC815740044D294 /* DatabaseManager.swift in Sources */,
 				4BA26C6E2CCBB01200ED1929 /* UIView+AutoLayout.swift in Sources */,
 				4B9E8D382CCA97F900671249 /* BaseViewController.swift in Sources */,
+				4BB04D902CD0A176009A7A54 /* Localizationer.swift in Sources */,
 				4B293EE42CCFE6870052BDA5 /* Constants.swift in Sources */,
 				4B6277EC2CC863B600C7FEA9 /* GPAResponse.swift in Sources */,
 				4BA26C6C2CCBAF4600ED1929 /* UIView+Extension.swift in Sources */,
@@ -885,6 +917,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4BB04D8E2CD0A158009A7A54 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BB04D8D2CD0A158009A7A54 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		4BCE5A722CC7B03400EA4865 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

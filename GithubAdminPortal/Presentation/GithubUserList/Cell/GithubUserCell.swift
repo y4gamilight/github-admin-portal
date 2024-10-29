@@ -44,7 +44,7 @@ final class GithubUserCell: UITableViewCell {
     let label = UILabel().forAutolayout()
     label.isUserInteractionEnabled = true
     label.textColor = .blue
-    label.font = UIFont.systemFont(ofSize: 12)
+    label.font = Fonts.subtitle
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hyperlinkTapped))
     label.addGestureRecognizer(tapGesture)
     return label

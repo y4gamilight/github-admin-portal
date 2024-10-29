@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  GithubAdminPortal
+
+  Created by Thanh Le Tan [C] on 29/10/24.
+  
+*/
+"app_name" = "GithubAdminPortal";
+"text_ok" = "OK";
+"text_follower" = "Follower";
+"text_following" = "Following";
+"text_blog" = "Blog";
+"heading_user_list" = "Github Users";
+"heading_user_details" = "User Details";

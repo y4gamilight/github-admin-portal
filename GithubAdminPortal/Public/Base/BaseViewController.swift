@@ -29,10 +29,4 @@ class BaseViewController<ViewModel: BaseViewModel>: UIViewController {
   func setup() {}
   
   func configuration() {}
-  
-  func showErorMessage(_ msg: String) {
-      let alertVC = UIAlertController(title: "Github Admin Portal", message: msg, preferredStyle: .alert)
-      alertVC.addAction(UIAlertAction(title:  "Cancel", style: .cancel))
-      self.present(alertVC, animated: true)
-  }
 }

@@ -14,7 +14,7 @@ protocol GithubUserListOutput {
 
 class GithubUserListViewModel: BaseViewModel { 
   var coordinator: GithubUserCoordinator
-  weak var input: GithubUserListInput?
+  weak var input: (GithubUserListInput & ErrorAlertPresentable)?
   private let userService: IUserService
   fileprivate var lastID: Int?
   fileprivate var isFetching: Bool = false
@@ -46,31 +46,36 @@ extension GithubUserListViewModel: GithubUserListOutput {
     isFetching = true
     
     userService.fetchAll(since: since, perPage: Constants.Pagination.perPage, onCompletion: { [weak self] response in
-      guard let self = self else { return }
+      guard let this = self else { return }
       
       if let newLastID = response.last?.id {
-        if self.lastID == newLastID {
-          self.isFetching = false
+        if this.lastID == newLastID {
+          this.isFetching = false
           return
         }
-        self.lastID = newLastID
+        this.lastID = newLastID
       }
       
-      let items = response.map { self.map($0) }
+      let items = response.map { this.map($0) }
       DispatchQueue.main.async {
         if since == nil {
-          self.input?.updateUsers(items)
+          this.input?.updateUsers(items)
         } else {
-          self.input?.appendUsers(items)
+          this.input?.appendUsers(items)
         }
-        self.isFetching = false
+        this.isFetching = false
         if response.count < Constants.Pagination.perPage {
-          self.input?.stopLoadMore()
+          this.input?.stopLoadMore()
         }
       }
     }, onFailure: { [weak self] error in
-      self?.isFetching = false
-      self?.input?.stopLoadMore()
+      guard let this = self else { return }
+      this.isFetching = false
+      if since == nil && this.items.isEmpty {
+        DispatchQueue.main.async {
+          this.input?.showErorMessage(error.description)
+        }
+      }
     })
   }
   

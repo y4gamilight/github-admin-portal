@@ -28,7 +28,7 @@ final class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
   private let dataSource = GithubUserDataSource(lazyLoadManager: LazyLoadUserAvatarManager())
   
   override func setup() {
-    navigationItem.title = "Github Users"
+    navigationItem.title = Localizationer.headingUserList
     view.backgroundColor = .clear
     view.addSubview(usersTableView)
     usersTableView.addInnerConstraint([.top, .bottom, .leading, .trailing], constant: 0)
@@ -67,3 +67,4 @@ extension GithubUserListVC: GithubUserListInput {
   }
 }
 
+extension GithubUserListVC: ErrorAlertPresentable {}

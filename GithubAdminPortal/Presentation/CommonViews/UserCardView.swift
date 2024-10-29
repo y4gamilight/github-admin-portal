@@ -47,7 +47,7 @@ class UserCardView: UIView {
 
   private lazy var usernameLabel: UILabel = {
     let label = UILabel().forAutolayout()
-    label.font = .systemFont(ofSize: 18, weight: .bold)
+    label.font = Fonts.heading3
     label.textColor = .black
     label.frame = .zero
     return label

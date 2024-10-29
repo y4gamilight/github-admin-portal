@@ -47,7 +47,7 @@ class StatView: UIView {
   private lazy var statLabel: UILabel = {
     let label = UILabel().forAutolayout()
     label.text = config.stat
-    label.font = .systemFont(ofSize: 12)
+    label.font = Fonts.subtitle
     label.textColor = .black
     return label
   }()
@@ -55,7 +55,7 @@ class StatView: UIView {
   private lazy var unitLabel: UILabel = {
     let label = UILabel().forAutolayout()
     label.text = config.unit
-    label.font = .systemFont(ofSize: 12)
+    label.font = Fonts.subtitle
     label.textColor = .black
     return label
   }()
