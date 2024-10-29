@@ -14,8 +14,11 @@ class JSONFileHelper {
       let decoder = JSONDecoder()
       let decodedData = try decoder.decode(T.self, from: data)
       return decodedData
+    }  catch let error as DecodingError {
+      assertionFailure("Failed to DecodingError \(fileName).\(fileType): \(error.localizedDescription)")
+      return nil
     } catch {
-      assertionFailure("Failed to decode \(fileName).\(fileType): \(error.localizedDescription)")
+      assertionFailure("Failed to dataLoadingFailed \(fileName).\(fileType): \(error.localizedDescription)")
       return nil
     }
   }

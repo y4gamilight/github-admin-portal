@@ -8,6 +8,9 @@
 import Foundation
 
 struct Constants {
+  struct Pagination {
+    static let perPage = 20
+  }
   struct Download {
     static let thumbnailSize = CGSize(width: 128, height: 128)
   }

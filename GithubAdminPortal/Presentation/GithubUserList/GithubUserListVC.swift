@@ -9,6 +9,9 @@ import UIKit
 
 protocol GithubUserListInput: AnyObject {
   func updateUsers(_ items: [GithubUserCellItem])
+  func appendUsers(_ items: [GithubUserCellItem])
+  func stopLoadMore()
+  func stopLazyLoads()
 }
 
 final class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
@@ -32,7 +35,7 @@ final class GithubUserListVC: BaseViewController<GithubUserListViewModel> {
     dataSource.registerCells(for: usersTableView)
     dataSource.listener = viewModel
     
-    viewModel.fetchUsers()
+    viewModel.loadDataInLoadedView()
   }
 }
 
@@ -40,6 +43,19 @@ extension GithubUserListVC: GithubUserListInput {
   func updateUsers(_ items: [GithubUserCellItem]) {
     dataSource.updateItems(items)
     usersTableView.reloadData()
+  }
+  
+  func appendUsers(_ items: [GithubUserCellItem]) {
+    dataSource.appendItems(items)
+    usersTableView.reloadData()
+  }
+  
+  func stopLoadMore() {
+    dataSource.stopLoadMore(usersTableView)
+  }
+  
+  func stopLazyLoads() {
+    dataSource.stopLoadImages()
   }
 }
 

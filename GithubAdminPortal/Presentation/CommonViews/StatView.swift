@@ -1,3 +1,10 @@
+//
+//  StatView.swift
+//  GithubAdminPortal
+//
+//  Created by Thanh Le Tan [C] on 26/10/24.
+//
+
 import UIKit
 
 struct StatViewConfig {

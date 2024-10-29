@@ -23,8 +23,8 @@ final class UserService: IUserService {
     return dataSource.getBelongTo(name: userName)
   }
   
-  func fetchAll(since: Int?, onCompletion: (([GithubUser]) -> Void)?, onFailure: ((APIError) -> Void)?) {
-    let paramRequest = GetUserListRequest(since: since)
+  func fetchAll(since: Int?, perPage: Int, onCompletion: (([GithubUser]) -> Void)?, onFailure: ((APIError) -> Void)?) {
+    let paramRequest = GetUserListRequest(since: since, perPage: perPage)
     api.getAll(paramRequest, onCompletion: {[weak self] response in
       guard let this = self else { return }
       this.saveUsersToLocal(response)
