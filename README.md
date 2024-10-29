@@ -31,6 +31,7 @@ Note: My MacBook upgraded Sanoma OS, and it doesn't allow run XCode 14 anymore
 - Migration between remote and local storage have some issues, it can replace fully data by lack of data
 - The index items and local storage data are different, causing a flash of changes when the app opens due to remote data updating and replacing local data.
 - Network errors and some error cases are not handled.
+– Testing on a real device and iOS 12 has not been completed yet.
 
 ### 5. Areas for Improvement
 - Support for GitHub API token refresh.
@@ -38,3 +39,7 @@ Note: My MacBook upgraded Sanoma OS, and it doesn't allow run XCode 14 anymore
 - Integrate build tools.
 - Refactor code in `DatabaseManager` and `DataSource` classes.
 - Implement a `UseCase` class to handle storage and manage logic for session timeouts or network issues.
+- Lack of unit tests for `DataSource` and `ViewController`.  
+- Apply functional testing. 
+
+### 6. Demo

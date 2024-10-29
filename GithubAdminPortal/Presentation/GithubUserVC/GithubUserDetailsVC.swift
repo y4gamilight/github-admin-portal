@@ -56,12 +56,12 @@ final class GithubUserDetailsVC: BaseViewController<GithubUserDetailsViewModel>,
   }()
 
   private lazy var followerStatView: StatView = {
-    let view = StatView(config: .init(stat: "0", unit: Localizationer.textFollower, iconName: Images.Name.icFollowers.rawValue)).forAutolayout()
+    let view = StatView(config: .init(stat: 0, unit: Localizationer.textFollower, iconName: Images.Name.icFollowers.rawValue)).forAutolayout()
     return view
   }()
 
   private lazy var followingStatView: StatView = {
-    let view = StatView(config: .init(stat: "0", unit: Localizationer.textFollowing, iconName: Images.Name.icFollowings.rawValue)).forAutolayout()
+    let view = StatView(config: .init(stat: 0, unit: Localizationer.textFollowing, iconName: Images.Name.icFollowings.rawValue)).forAutolayout()
     return view
   }()
 
@@ -130,8 +130,8 @@ extension GithubUserDetailsVC: GithubUserDetailsInput {
   func updateUserDetails(user: GithubUserDetails) {
     locationLabel.text = user.location
     userCardView.update(config: UserCardViewConfig(title: user.userName, url: user.avatarURL))
-    followerStatView.update(config: StatViewConfig(stat: "\(user.followers)", unit: Localizationer.textFollower, iconName: nil))
-    followingStatView.update(config: StatViewConfig(stat: "\(user.followings)", unit: Localizationer.textFollowing, iconName: nil))
+    followerStatView.update(config: StatViewConfig(stat: user.followers, unit: Localizationer.textFollower, iconName: nil))
+    followingStatView.update(config: StatViewConfig(stat: user.followings, unit: Localizationer.textFollowing, iconName: nil))
     
     bioTextView.text = user.blog
   }

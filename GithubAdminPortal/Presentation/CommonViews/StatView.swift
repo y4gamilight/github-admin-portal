@@ -8,7 +8,7 @@
 import UIKit
 
 struct StatViewConfig {
-  let stat: String
+  let stat: Int
   let unit: String
   let iconName: String?
 }
@@ -46,7 +46,7 @@ class StatView: UIView {
 
   private lazy var statLabel: UILabel = {
     let label = UILabel().forAutolayout()
-    label.text = config.stat
+    label.text = roundNumberOfStat(config.stat)
     label.font = Fonts.subtitle
     label.textColor = .black
     return label
@@ -84,10 +84,21 @@ class StatView: UIView {
 
   func update(config: StatViewConfig) {
     self.config = config
-    self.statLabel.text = config.stat
+    self.statLabel.text = roundNumberOfStat(config.stat)
     self.unitLabel.text = config.unit
     if let image = config.iconName {
       self.statIcon.image = UIImage(named: image)
     }
+  }
+
+  private func roundNumberOfStat(_ number: Int) -> String {
+    if number > 1000 {
+      return "1000+"
+    } else if number > 100 {
+      return "100+"
+    } else if number > 10 {
+      return "10+"
+    }
+    return "\(number)"
   }
 }
